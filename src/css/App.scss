@@ -1,11 +1,7 @@
 .App {
   text-align: center;
+  font-family: 'Soleil';
 }
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-} */
 
 .App-header {
   background-color: #222;
@@ -18,11 +14,36 @@
   font-size: 1.5em;
 }
 
-.App-intro {
-  font-size: large;
+
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2em;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+button {
+  font-size: 1em;
+  font-family: inherit;
+  padding: 0.5em 4em;
+  background: #222;
+  color:#fff;
+    &:hover {
+    cursor: pointer;
+    background: #444;
+  }
+  &:focus {
+    outline:none;
+  }
 }
+
+/* .App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+} */
+
+
+// @keyframes App-logo-spin {
+//   from { transform: rotate(0deg); }
+//   to { transform: rotate(360deg); }
+// }

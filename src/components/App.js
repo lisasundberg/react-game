@@ -18,7 +18,8 @@ class App extends Component {
   }
 
   saveName = (event) => {
-    this.setState({ name: event.target.value });
+    // let username = document.getElementById('username');
+    this.setState({ name: this.username.value });
   }
 
   render() {
@@ -26,12 +27,16 @@ class App extends Component {
       <div className="App">
         <Header>
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
-          <h1 className="App-title">En KLICK guaca tack</h1>
+          <h1 className="App-title">En klick guaca tack</h1>
           <p className="username">{ this.state.name }</p>
         </Header>
         <Container>
-          <input type="text" name="username" onChange={ this.saveName } />
-          <h2 className="App-intro">
+
+          <label htmlFor="username">Username</label>
+          <input type="text" name="username" ref={ input => { this.username = input; } } /> {/* Varför funkar detta? */}
+          <button onClick={ this.saveName }> Save </button>
+
+          <h2>
             { this.state.counter }
           </h2>
           <Button handleClick={ this.handleClick }> {/* Fråga: skulle jag lika gärna kunna skriva onClick direkt på här?? */}

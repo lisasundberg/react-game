@@ -24,6 +24,18 @@ h2 {
   font-size: 2em;
 }
 
+label, input, button {
+  display: block;
+  margin: 5px auto;
+}
+
+input {
+  height:30px;
+  text-indent: 6px;
+  font-size: 1em;
+  font-family: inherit;
+}
+
 button {
   font-size: 1em;
   font-family: inherit;

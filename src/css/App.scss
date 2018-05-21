@@ -69,6 +69,12 @@ button {
   }
 }
 
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
 .popup {
   position: fixed;
   z-index: 999;
@@ -88,6 +94,35 @@ button {
   }
 }
 
+.upgrades {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px auto;
+}
+.upgrade {
+  height: 100px;
+  width: 100px;
+  background: #f7f7f7;
+}
+//Onion
+.upgrade_one {
+  background: #fff37c;
+}
+//Tomato
+.upgrade_two {
+  background: tomato;
+}
+//Garlic clove
+.upgrade_three {
+  background: wheat;
+}
+//Chili
+.upgrade_four {
+  background: red;
+}
+.upgrade_five {
+  background: #8ddd8d;
+}
 
 /*****************************************/
 /********** FUNCTIONAL STYLES ************/

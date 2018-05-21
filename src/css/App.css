@@ -56,6 +56,11 @@ button {
   button:focus {
     outline: none; }
 
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: auto; }
+
 .popup {
   position: fixed;
   z-index: 999;
@@ -72,6 +77,31 @@ button {
     width: 100%;
     margin-bottom: 1em;
     text-align: center; }
+
+.upgrades {
+  display: flex;
+  justify-content: space-between;
+  margin: 100px auto; }
+
+.upgrade {
+  height: 100px;
+  width: 100px;
+  background: #f7f7f7; }
+
+.upgrade_one {
+  background: #fff37c; }
+
+.upgrade_two {
+  background: tomato; }
+
+.upgrade_three {
+  background: wheat; }
+
+.upgrade_four {
+  background: red; }
+
+.upgrade_five {
+  background: #8ddd8d; }
 
 /*****************************************/
 /********** FUNCTIONAL STYLES ************/

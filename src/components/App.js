@@ -3,23 +3,29 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Container from './Container';
 import Button from './Button';
-//import Popup from './Popup';
+import Popup from './Popup';
 //import NameInput from './NameInput';
 import './../css/App.css';
 
 class App extends Component {
   state = {
     name: '',
-    counter: 0
+    counter: 0,
+    popupVisible: true
   }
+
+  // hide = (element) => {
+  //   element.classList.add("hidden");
+  // }
 
   handleClick = () => {
     this.setState({ counter: this.state.counter + 1 });
   }
-
   saveName = (event) => {
-    // let username = document.getElementById('username');
-    this.setState({ name: this.username.value });
+    this.setState({ name: this.username.value, popupVisible: false });
+    // let popup = document.getElementById('popup');
+    // console.log(this.popup);
+    // this.hide(popup);
   }
 
   render() {
@@ -31,15 +37,16 @@ class App extends Component {
           <p className="username">{ this.state.name }</p>
         </Header>
         <Container>
-
-          <label htmlFor="username">Username</label>
-          <input type="text" name="username" ref={ input => { this.username = input; } } /> {/* Varför funkar detta? */}
-          <button onClick={ this.saveName }> Save </button>
-
+          { this.state.popupVisible &&
+            <Popup>
+              <label htmlFor="username">Vad heter du?</label>
+              <input type="text" name="username" ref={ input => this.username = input } />
+              <button onClick={ this.saveName }> OK GO </button>
+            </Popup> }
           <h2>
             { this.state.counter }
           </h2>
-          <Button handleClick={ this.handleClick }> {/* Fråga: skulle jag lika gärna kunna skriva onClick direkt på här?? */}
+          <Button handleClick={ this.handleClick }>
             <p>Click me!</p>
           </Button>
         </Container>

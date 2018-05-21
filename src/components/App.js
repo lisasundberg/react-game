@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Container from './Container';
 import Button from './Button';
-import Popup from './Popup';
-import NameInput from './NameInput';
+//import Popup from './Popup';
+//import NameInput from './NameInput';
 import './../css/App.css';
 
 class App extends Component {
@@ -17,9 +17,9 @@ class App extends Component {
     this.setState({ counter: this.state.counter + 1 });
   }
 
-  // saveName = () => {
-  //   this.setState({ name: e.target.value });
-  // }
+  saveName = (event) => {
+    this.setState({ name: event.target.value });
+  }
 
   render() {
     return (
@@ -27,11 +27,10 @@ class App extends Component {
         <Header>
           {/*<img src={logo} className="App-logo" alt="logo" />*/}
           <h1 className="App-title">En KLICK guaca tack</h1>
+          <p className="username">{ this.state.name }</p>
         </Header>
         <Container>
-          <Popup>
-            <NameInput />
-          </Popup>
+          <input type="text" name="username" onChange={ this.saveName } />
           <h2 className="App-intro">
             { this.state.counter }
           </h2>

@@ -17,7 +17,14 @@ class App extends Component {
     upgradeThreeDisabled: true,
     upgradeFourDisabled: true,
     upgradeFiveDisabled: true,
+  }
 
+  price = {
+    "upgradeOne": 5,
+    "upgradeTwo": 30,
+    "upgradeThree": 40,
+    "upgradeFour": 100,
+    "upgradeFive": 500
   }
 
   handleClick = () => {
@@ -107,11 +114,36 @@ class App extends Component {
             {  this.state.upgradeThreeVisible && <div className="upgrade upgrade_three"></div> }
             {  this.state.upgradeFourVisible && <div className="upgrade upgrade_four"></div> }
             {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> } */}
-            <Upgrade className="upgrade upgrade_one" disabled={ this.state.upgradeOneDisabled } text="Onion" buy={ this.buy.upgradeOne } />
-            <Upgrade className="upgrade upgrade_two" disabled={ this.state.upgradeTwoDisabled } text="Tomato" buy={ this.buy.upgradeTwo } />
-            <Upgrade className="upgrade upgrade_three" disabled={ this.state.upgradeThreeDisabled } text="Garlic" buy={ this.buy.upgradeThree } />
-            <Upgrade className="upgrade upgrade_four" disabled={ this.state.upgradeFourDisabled } text="Chili" buy={ this.buy.upgradeFour } />
-            <Upgrade className="upgrade upgrade_five" disabled={this.state.upgradeFiveDisabled } text="Avocado" buy={ this.buy.upgradeFive } />
+            <Upgrade  className="upgrade upgrade_one"
+                      disabled={ this.state.upgradeOneDisabled }
+                      text="Onion"
+                      price={ this.price.upgradeOne }
+                      buy={ this.buy.upgradeOne }
+            />
+            <Upgrade  className="upgrade upgrade_two"
+                      disabled={ this.state.upgradeTwoDisabled }
+                      text="Tomato"
+                      price={ this.price.upgradeTwo }
+                      buy={ this.buy.upgradeTwo }
+            />
+            <Upgrade  className="upgrade upgrade_three"
+                      disabled={ this.state.upgradeThreeDisabled }
+                      text="Garlic"
+                      price={ this.price.upgradeThree }
+                      buy={ this.buy.upgradeThree }
+            />
+            <Upgrade  className="upgrade upgrade_four"
+                      disabled={ this.state.upgradeFourDisabled }
+                      text="Chili"
+                      price={ this.price.upgradeFour }
+                      buy={ this.buy.upgradeFour }
+            />
+            <Upgrade className="upgrade upgrade_five"
+                    disabled={this.state.upgradeFiveDisabled }
+                    text="Avocado"
+                    price={ this.price.upgradeOne }
+                    buy={ this.buy.upgradeFive }
+            />
           </div>
         </Container>
 

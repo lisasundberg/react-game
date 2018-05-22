@@ -1,5 +1,6 @@
-#React click game
+React click game
+================
 
-###by Lisa Sundberg
+### by Lisa Sundberg
 
-https://github.com/lisasundberg/react-game
+Link to repo: [https://github.com/lisasundberg/react-game](https://github.com/lisasundberg/react-game)

@@ -61,20 +61,24 @@ input {
 }
 
 button {
-//   border: none;
-//   outline: none;
-//   cursor: pointer;
-//   font-family: inherit;
-  // padding: 1em 4em;
-//   background: #222;
-//   color:#fff;
-//     &:hover {
-//     background: #444;
-//   }
-//   &:focus {
-//     outline:none;
-//   }
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background: #222;
+  color:#fff;
+    &:hover {
+    background: #444;
+  }
+  &:focus {
+    outline:none;
+  }
 }
+
+.button-main {
+  cursor: pointer;
+  padding: 1em 4em;
+}
+
 
 .container {
   width: 100%;
@@ -109,41 +113,62 @@ button {
 /*****************************************/
 /*************** UPGRADES ****************/
 /*****************************************/
+
+.upgrade + .upgrade {
+  margin-left: 20px;
+}
+// Onion
+.upgrade_one {
+  button {
+    background: #fff37c;
+  }
+}
+// Tomato
+.upgrade_two {
+  button {
+    background: tomato;
+  }
+}
+// Garlic clove
+.upgrade_three {
+  button {
+    background: wheat;
+  }
+}
+// Chili
+.upgrade_four {
+  button {
+    background: red;
+  }
+}
+// Avocado
+.upgrade_five {
+  button {
+    background: #8ddd8d;
+  }
+}
+
 .upgrades {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   height: 150px;
   margin: 0 auto;
+  .upgrade button {
+    cursor: pointer;
+  }
+  button {
+    height: 100px;
+    width: 100px;
+    &:disabled,
+    &[disabled]{
+      cursor: not-allowed;
+      background: #777;
+      color: #444;
+    }
+  }
 }
-.upgrade {
-  height: 100px;
-  width: 100px;
-  background: #f7f7f7;
-}
-.upgrade + .upgrade {
-  margin-left: 20px;
-}
-// Onion
-.upgrade_one {
-  background: #fff37c;
-}
-// Tomato
-.upgrade_two {
-  background: tomato;
-}
-// Garlic clove
-.upgrade_three {
-  background: wheat;
-}
-// Chili
-.upgrade_four {
-  background: red;
-}
-// Avocado
-.upgrade_five {
-  background: #8ddd8d;
-}
+
 
 /*****************************************/
 /********** FUNCTIONAL STYLES ************/

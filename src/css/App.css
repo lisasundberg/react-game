@@ -51,6 +51,21 @@ input {
   outline: none;
   border-bottom: 1px solid #222; }
 
+button {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background: #222;
+  color: #fff; }
+  button:hover {
+    background: #444; }
+  button:focus {
+    outline: none; }
+
+.button-main {
+  cursor: pointer;
+  padding: 1em 4em; }
+
 .container {
   width: 100%;
   min-height: 80vh;
@@ -81,35 +96,39 @@ input {
 /*****************************************/
 /*************** UPGRADES ****************/
 /*****************************************/
+.upgrade + .upgrade {
+  margin-left: 20px; }
+
+.upgrade_one button {
+  background: #fff37c; }
+
+.upgrade_two button {
+  background: tomato; }
+
+.upgrade_three button {
+  background: wheat; }
+
+.upgrade_four button {
+  background: red; }
+
+.upgrade_five button {
+  background: #8ddd8d; }
+
 .upgrades {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
   height: 150px;
   margin: 0 auto; }
-
-.upgrade {
-  height: 100px;
-  width: 100px;
-  background: #f7f7f7; }
-
-.upgrade + .upgrade {
-  margin-left: 20px; }
-
-.upgrade_one {
-  background: #fff37c; }
-
-.upgrade_two {
-  background: tomato; }
-
-.upgrade_three {
-  background: wheat; }
-
-.upgrade_four {
-  background: red; }
-
-.upgrade_five {
-  background: #8ddd8d; }
+  .upgrades .upgrade button {
+    cursor: pointer; }
+  .upgrades button {
+    height: 100px;
+    width: 100px; }
+    .upgrades button:disabled, .upgrades button[disabled] {
+      cursor: not-allowed;
+      background: #777;
+      color: #444; }
 
 /*****************************************/
 /********** FUNCTIONAL STYLES ************/

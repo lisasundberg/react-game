@@ -47,9 +47,6 @@ class App extends Component {
       this.setState({ upgradeFiveDisabled: false });
       console.log('You get an avocado! Congratulations! You made it!')
     }
-    else {
-      console.log('Hmmmmm?');
-    }
   }
 
   saveName = (event) => {

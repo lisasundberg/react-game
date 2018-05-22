@@ -61,19 +61,19 @@ input {
 }
 
 button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-family: inherit;
-  padding: 1em 4em;
-  background: #222;
-  color:#fff;
-    &:hover {
-    background: #444;
-  }
-  &:focus {
-    outline:none;
-  }
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+//   font-family: inherit;
+  // padding: 1em 4em;
+//   background: #222;
+//   color:#fff;
+//     &:hover {
+//     background: #444;
+//   }
+//   &:focus {
+//     outline:none;
+//   }
 }
 
 .container {

@@ -4,7 +4,7 @@ import Header from './Header';
 import Container from './Container';
 import Button from './Button';
 import Popup from './Popup';
-//import NameInput from './NameInput';
+import Upgrade from './Upgrade';
 import './../css/App.css';
 
 class App extends Component {
@@ -12,35 +12,43 @@ class App extends Component {
     name: '',
     counter: 0,
     popupVisible: false,
-    upgradeOneVisible: false,
-    upgradeTwoVisible: false,
-    upgradeThreeVisible: false,
-    upgradeFourVisible: false,
-    upgradeFiveVisible: false
+    upgradeOneDisabled: true,
+    upgradeTwoDisabled: true,
+    upgradeThreeDisabled: true,
+    upgradeFourDisabled: true,
+    upgradeFiveDisabled: true
   }
 
   handleClick = () => {
-    this.setState({ counter: this.state.counter + 1 });
-
-    if(this.state.counter === 4) {
-      this.setState({ upgradeOneVisible: true });
+    if(this.state.counter < 4) {
+      this.setState({ counter: this.state.counter + 1 });
+    }
+    else if(this.state.counter >= 4 && this.state.counter < 30) {
+      this.setState({ upgradeOneDisabled: false,
+                      counter: this.state.counter + 2 });
       console.log('You get an onion');
     }
-    if(this.state.counter === 9) {
-      this.setState({ upgradeTwoVisible: true });
+    else if(this.state.counter >= 30 && this.state.counter < 50)  {
+      this.setState({ upgradeTwoDisabled: false,
+                      counter: this.state.counter + 5 });
       console.log('You get a tomato')
     }
-    if(this.state.counter === 14) {
-      this.setState({ upgradeThreeVisible: true });
+    else if(this.state.counter >= 50 && this.state.counter < 200) {
+      this.setState({ upgradeThreeDisabled: false,
+                      counter: this.state.counter + 10 });
       console.log('You get a garlic clove')
     }
-    if(this.state.counter === 19) {
-      this.setState({ upgradeFourVisible: true });
+    else if(this.state.counter >= 200 && this.state.counter < 500) {
+      this.setState({ upgradeFourDisabled: false,
+                      counter: this.state.counter + 20  });
       console.log('You get a chili')
     }
-    if(this.state.counter === 24) {
-      this.setState({ upgradeFiveVisible: true });
+    else if(this.state.counter === 500) {
+      this.setState({ upgradeFiveDisabled: false });
       console.log('You get an avocado! Congratulations! You made it!')
+    }
+    else {
+      console.log('Hmmmmm?');
     }
   }
 
@@ -73,11 +81,16 @@ class App extends Component {
             <p>Click me!</p>
           </Button>
           <div className="upgrades">
-            { this.state.upgradeOneVisible && <div className="upgrade upgrade_one"></div> }
+            {/* { this.state.upgradeOneVisible && <Upgrade className="upgrade upgrade_one" disabled={true} text="Tomato" /> }
             {  this.state.upgradeTwoVisible && <div className="upgrade upgrade_two"></div> }
             {  this.state.upgradeThreeVisible && <div className="upgrade upgrade_three"></div> }
             {  this.state.upgradeFourVisible && <div className="upgrade upgrade_four"></div> }
-            {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> }
+            {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> } */}
+            <Upgrade className="upgrade upgrade_one" disabled={ this.state.upgradeOneDisabled } text="Onion" />
+            <Upgrade className="upgrade upgrade_two" disabled={ this.state.upgradeTwoDisabled } text="Tomato" />
+            <Upgrade className="upgrade upgrade_three" disabled={ this.state.upgradeThreeDisabled } text="Garlic" />
+            <Upgrade className="upgrade upgrade_four" disabled={ this.state.upgradeFourDisabled } text="Chili" />
+            <Upgrade className="upgrade upgrade_five" disabled={this.state.upgradeFiveDisabled } text="Avocado" />
           </div>
         </Container>
 

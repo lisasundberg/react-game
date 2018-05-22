@@ -17,6 +17,15 @@ class App extends Component {
     upgradeThreeDisabled: true,
     upgradeFourDisabled: true,
     upgradeFiveDisabled: true,
+
+    boughtUpgradeOne: false,
+    boughtUpgradeTwo: false,
+    boughtUpgradeThree: false,
+    boughtUpgradeFour: false,
+    boughtUpgradeFive: false,
+
+    feedback: ''
+
   }
 
   price = {
@@ -66,26 +75,47 @@ class App extends Component {
   /*****************************************/
   buy = {
     upgradeOne: () => {
-    this.setState({ counter: this.state.counter - 5 });
-    console.log('You bought an onion for 5 points!');
+    this.setState({ counter: this.state.counter - this.price.upgradeOne,
+                    boughtUpgradeOne: true,
+                    feedback: 'You bought an onion for $' + this.price.upgradeOne
+    });
   },
     upgradeTwo: () => {
-      this.setState({ counter: this.state.counter - 30 });
-      console.log('You bought a tomato for 30 points!');
+      this.setState({ counter: this.state.counter - this.price.upgradeTwo,
+                      boughtUpgradeTwo: true,
+                      feedback: 'You bought a tomato for $' + this.price.upgradeTwo
+      });
     },
     upgradeThree: () => {
-      this.setState({ counter: this.state.counter - 40 });
-      console.log('You bought a garlic clove for 40 points!');
+      this.setState({ counter: this.state.counter - this.price.upgradeThree,
+                      boughtUpgradeThree: true,
+                      feedback: 'You bought a garlic clove for $' + this.price.upgradeThree
+       });
     },
     upgradeFour: () => {
-      this.setState({ counter: this.state.counter - 100 });
-      console.log('You bought a chili for 100 points!');
+      this.setState({ counter: this.state.counter - this.price.upgradeFour,
+                      boughtUpgradeFour: true,
+                      feedback: 'You bought a chili for $' + this.price.upgradeFour
+        });
     },
     upgradeFive: () => {
-      this.setState({ counter: this.state.counter - 500 });
-      console.log('You bought an avocado for 500 points! Congratulations! You got guac!');
+      this.setState({ counter: this.state.counter - this.price.upgradeFive,
+                      boughtUpgradeFive: true,
+                      feedback: 'You bought an avocado for $' + this.price.upgradeFive + '! Congratulations! You made guac!'
+      });
     }
   }
+
+  /*****************************************/
+  /*************** FEEDBACK ****************/
+  /*****************************************/
+  // feedback = {
+  //   if (this.state.boughtUpgradeOne ){
+  //     this.setState({ feedback: 'You bought an onion for' this.price.upgradeOne });
+  //   }
+  // }
+
+
 
   render() {
     return (
@@ -103,7 +133,7 @@ class App extends Component {
             </Popup>
           }
           <h2>
-            { this.state.counter }
+            ${ this.state.counter }
           </h2>
           <Button handleClick={ this.handleClick }>
             <p>Click me!</p>
@@ -114,6 +144,7 @@ class App extends Component {
             {  this.state.upgradeThreeVisible && <div className="upgrade upgrade_three"></div> }
             {  this.state.upgradeFourVisible && <div className="upgrade upgrade_four"></div> }
             {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> } */}
+
             <Upgrade  className="upgrade upgrade_one"
                       disabled={ this.state.upgradeOneDisabled }
                       text="Onion"
@@ -138,12 +169,20 @@ class App extends Component {
                       price={ this.price.upgradeFour }
                       buy={ this.buy.upgradeFour }
             />
-            <Upgrade className="upgrade upgrade_five"
-                    disabled={this.state.upgradeFiveDisabled }
-                    text="Avocado"
-                    price={ this.price.upgradeOne }
-                    buy={ this.buy.upgradeFive }
+            <Upgrade  className="upgrade upgrade_five"
+                      disabled={this.state.upgradeFiveDisabled }
+                      text="Avocado"
+                      price={ this.price.upgradeFive }
+                      buy={ this.buy.upgradeFive }
             />
+          </div>
+          <div className="feedback">
+            {/* { this.state.boughtUpgradeOne && <p>You bought an onion for { this.price.upgradeOne }</p> }
+            { this.state.boughtUpgradeTwo && <p>You bought a tomato for { this.price.upgradeTwo }</p> }
+            { this.state.boughtUpgradeThree && <p>You bought a garlic clove for { this.price.upgradeThree }</p> }
+            { this.state.boughtUpgradeFour && <p>You bought a chili for { this.price.upgradFour}</p> }
+            { this.state.boughtUpgradeFive && <p>You bought an avocado for { this.price.upgradeFive }! Congratulations you made it!</p> } */}
+            <p>{ this.state.feedback }</p>
           </div>
         </Container>
 

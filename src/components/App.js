@@ -16,7 +16,8 @@ class App extends Component {
     upgradeTwoDisabled: true,
     upgradeThreeDisabled: true,
     upgradeFourDisabled: true,
-    upgradeFiveDisabled: true
+    upgradeFiveDisabled: true,
+
   }
 
   handleClick = () => {
@@ -26,26 +27,22 @@ class App extends Component {
     else if(this.state.counter >= 4 && this.state.counter < 30) {
       this.setState({ upgradeOneDisabled: false,
                       counter: this.state.counter + 2 });
-      console.log('You get an onion');
     }
     else if(this.state.counter >= 30 && this.state.counter < 50)  {
       this.setState({ upgradeTwoDisabled: false,
                       counter: this.state.counter + 5 });
-      console.log('You get a tomato')
     }
     else if(this.state.counter >= 50 && this.state.counter < 200) {
       this.setState({ upgradeThreeDisabled: false,
                       counter: this.state.counter + 10 });
-      console.log('You get a garlic clove')
     }
     else if(this.state.counter >= 200 && this.state.counter < 500) {
       this.setState({ upgradeFourDisabled: false,
                       counter: this.state.counter + 20  });
-      console.log('You get a chili')
     }
     else if(this.state.counter === 500) {
-      this.setState({ upgradeFiveDisabled: false });
-      console.log('You get an avocado! Congratulations! You made it!')
+      this.setState({ upgradeFiveDisabled: false,
+                      counter: this.state.counter + 20 });
     }
   }
 
@@ -54,6 +51,33 @@ class App extends Component {
       name: this.username.value,
       popupVisible: false
     });
+  }
+
+
+  /*****************************************/
+  /************* BUY UPGRADES **************/
+  /*****************************************/
+  buy = {
+    upgradeOne: () => {
+    this.setState({ counter: this.state.counter - 5 });
+    console.log('You bought an onion for 5 points!');
+  },
+    upgradeTwo: () => {
+      this.setState({ counter: this.state.counter - 30 });
+      console.log('You bought a tomato for 30 points!');
+    },
+    upgradeThree: () => {
+      this.setState({ counter: this.state.counter - 40 });
+      console.log('You bought a garlic clove for 40 points!');
+    },
+    upgradeFour: () => {
+      this.setState({ counter: this.state.counter - 100 });
+      console.log('You bought a chili for 100 points!');
+    },
+    upgradeFive: () => {
+      this.setState({ counter: this.state.counter - 500 });
+      console.log('You bought an avocado for 500 points! Congratulations! You got guac!');
+    }
   }
 
   render() {
@@ -83,11 +107,11 @@ class App extends Component {
             {  this.state.upgradeThreeVisible && <div className="upgrade upgrade_three"></div> }
             {  this.state.upgradeFourVisible && <div className="upgrade upgrade_four"></div> }
             {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> } */}
-            <Upgrade className="upgrade upgrade_one" disabled={ this.state.upgradeOneDisabled } text="Onion" />
-            <Upgrade className="upgrade upgrade_two" disabled={ this.state.upgradeTwoDisabled } text="Tomato" />
-            <Upgrade className="upgrade upgrade_three" disabled={ this.state.upgradeThreeDisabled } text="Garlic" />
-            <Upgrade className="upgrade upgrade_four" disabled={ this.state.upgradeFourDisabled } text="Chili" />
-            <Upgrade className="upgrade upgrade_five" disabled={this.state.upgradeFiveDisabled } text="Avocado" />
+            <Upgrade className="upgrade upgrade_one" disabled={ this.state.upgradeOneDisabled } text="Onion" buy={ this.buy.upgradeOne } />
+            <Upgrade className="upgrade upgrade_two" disabled={ this.state.upgradeTwoDisabled } text="Tomato" buy={ this.buy.upgradeTwo } />
+            <Upgrade className="upgrade upgrade_three" disabled={ this.state.upgradeThreeDisabled } text="Garlic" buy={ this.buy.upgradeThree } />
+            <Upgrade className="upgrade upgrade_four" disabled={ this.state.upgradeFourDisabled } text="Chili" buy={ this.buy.upgradeFour } />
+            <Upgrade className="upgrade upgrade_five" disabled={this.state.upgradeFiveDisabled } text="Avocado" buy={ this.buy.upgradeFive } />
           </div>
         </Container>
 

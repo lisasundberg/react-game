@@ -8,14 +8,21 @@ html {
 }
 
 .App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20vh;
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
 .username {
-  color:white;
+  font-size: 1.5em;
+  margin: 0;
+  position: absolute;
+  top: 30px;
+  right:30px;
 }
 
 h1 {
@@ -71,11 +78,13 @@ button {
 
 .container {
   width: 100%;
+  min-height: 80vh;
   max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .popup {
@@ -97,9 +106,15 @@ button {
   }
 }
 
+/*****************************************/
+/*************** UPGRADES ****************/
+/*****************************************/
 .upgrades {
   display: flex;
-  margin: 100px auto;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 150px;
+  margin: 0 auto;
 }
 .upgrade {
   height: 100px;
@@ -109,23 +124,23 @@ button {
 .upgrade + .upgrade {
   margin-left: 20px;
 }
-
-//Onion
+// Onion
 .upgrade_one {
   background: #fff37c;
 }
-//Tomato
+// Tomato
 .upgrade_two {
   background: tomato;
 }
-//Garlic clove
+// Garlic clove
 .upgrade_three {
   background: wheat;
 }
-//Chili
+// Chili
 .upgrade_four {
   background: red;
 }
+// Avocado
 .upgrade_five {
   background: #8ddd8d;
 }

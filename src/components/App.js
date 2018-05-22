@@ -26,19 +26,19 @@ class App extends Component {
       this.setState({ upgradeOneVisible: true });
       console.log('You get an onion');
     }
-    if(this.state.counter === 10) {
+    if(this.state.counter === 9) {
       this.setState({ upgradeTwoVisible: true });
       console.log('You get a tomato')
     }
-    if(this.state.counter === 15) {
+    if(this.state.counter === 14) {
       this.setState({ upgradeThreeVisible: true });
       console.log('You get a garlic clove')
     }
-    if(this.state.counter === 20) {
+    if(this.state.counter === 19) {
       this.setState({ upgradeFourVisible: true });
       console.log('You get a chili')
     }
-    if(this.state.counter === 25) {
+    if(this.state.counter === 24) {
       this.setState({ upgradeFiveVisible: true });
       console.log('You get an avocado! Congratulations! You made it!')
     }
@@ -78,7 +78,6 @@ class App extends Component {
             {  this.state.upgradeThreeVisible && <div className="upgrade upgrade_three"></div> }
             {  this.state.upgradeFourVisible && <div className="upgrade upgrade_four"></div> }
             {  this.state.upgradeFiveVisible && <div className="upgrade upgrade_five"></div> }
-
           </div>
         </Container>
 

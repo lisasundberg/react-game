@@ -9,89 +9,180 @@ import Feedback from './Feedback';
 import './../css/App.css';
 
 class App extends Component {
+  // state = {
+  //   name: '',
+  //   counter: 0,
+  //   increment: 1,
+  //
+  //   popupVisible: false,
+  //
+  //   upgradeOneDisabled: true,
+  //   upgradeTwoDisabled: true,
+  //   upgradeThreeDisabled: true,
+  //   upgradeFourDisabled: true,
+  //   upgradeFiveDisabled: true,
+  //
+  //   boughtUpgradeOne: false,
+  //   boughtUpgradeTwo: false,
+  //   boughtUpgradeThree: false,
+  //   boughtUpgradeFour: false,
+  //   boughtUpgradeFive: false,
+  //
+  //   feedbackVisible: false,
+  //   feedback: ''
+  //
+  // }
+  //
+  // price = {
+  //   "upgradeOne": 5,
+  //   "upgradeTwo": 30,
+  //   "upgradeThree": 40,
+  //   "upgradeFour": 100,
+  //   "upgradeFive": 500
+  // }
   state = {
     name: '',
     counter: 0,
     increment: 1,
-
     popupVisible: false,
 
-    upgradeOneDisabled: true,
-    upgradeTwoDisabled: true,
-    upgradeThreeDisabled: true,
-    upgradeFourDisabled: true,
-    upgradeFiveDisabled: true,
+    upgradeOne: {
+      disabled: true,
+      bought: false,
+      price: 5,
+      increment: 2
+    },
+    upgradeTwo: {
+      disabled: true,
+      bought: false,
+      price: 30,
+      increment: 3
+    },
+    upgradeThree: {
+      disabled: true,
+      bought: false,
+      price: 40,
+      increment: 10
+    },
+    upgradeFour: {
+      disabled: true,
+      bought: false,
+      price: 100,
+      increment: 20,
+    },
+    upgradeFive: {
+      disabled: true,
+      bought: false,
+      price: 500,
+      increment: 30
+    },
 
-    boughtUpgradeOne: false,
-    boughtUpgradeTwo: false,
-    boughtUpgradeThree: false,
-    boughtUpgradeFour: false,
-    boughtUpgradeFive: false,
-
-    feedbackVisible: false,
     feedback: ''
 
   }
 
-  price = {
-    "upgradeOne": 5,
-    "upgradeTwo": 30,
-    "upgradeThree": 40,
-    "upgradeFour": 100,
-    "upgradeFive": 500
-  }
-
   increaseCounter = () => {
     if(this.state.counter <= 5) {
-      //this.setState({ counter: this.state.counter + this.state.increment });
-      this.setState((previousState, props) => {
-        return {
-          counter: previousState.counter + this.state.increment
-        }
-      });
+      this.setState({ counter: this.state.counter + this.state.increment });
+      // this.setState((previousState, props) => {
+      //   return {
+      //     counter: previousState.counter + this.state.increment
+      //   }
+      // });
     }
     else if(this.state.counter >= 5 && this.state.counter < 30) {
-      this.setState((previousState, props) => {
-        return {
-          upgradeOneDisabled: false,
-          counter: this.state.counter + this.state.increment
+        let upgradeOne = {
+          disbled: false,
+          bought: this.state.upgradeOne.bought,
+          price: this.state.upgradeOne.price,
+          increment: this.state.increment
         }
+        this.setState({
+          counter: this.state.counter + this.state.increment,
+          upgradeOne: upgradeOne
       });
     }
-    else if(this.state.counter >= 30 && this.state.counter < 40)  {
-      this.setState((previousState, props) => {
-        return {
-          upgradeTwoDisabled: false,
-          counter: this.state.counter + this.state.increment
+    else if(this.state.counter >= 30 && this.state.counter < 40) {
+        let upgradeTwo = {
+          disbled: false,
+          bought: this.state.upgradeTwo.bought,
+          price: this.state.upgradeTwo.price,
+          increment: this.state.increment
         }
+        this.setState({
+          counter: this.state.counter + this.state.increment,
+          upgradeTwo: upgradeTwo
       });
     }
-    else if(this.state.counter >= 40 && this.state.counter < 100) {
-      this.setState((previousState, props) => {
-        return {
-          upgradeThreeDisabled: false,
-          counter: this.state.counter + this.state.increment
+    else if(this.state.counter >= 40 && this.state.counter < 100) {
+        let upgradeThree = {
+          disbled: false,
+          bought: this.state.upgradeThree.bought,
+          price: this.state.upgradeThree.price,
+          increment: this.state.increment
         }
+        this.setState({
+          counter: this.state.counter + this.state.increment,
+          upgradeThree: upgradeThree
       });
     }
-    else if(this.state.counter >= 100 && this.state.counter < 500) {
-      this.setState((previousState, props) => {
-        return {
-          upgradeFourDisabled: false,
-          counter: this.state.counter + this.state.increment
+    else if(this.state.counter >= 100 && this.state.counter < 500) {
+        let upgradeFour = {
+          disbled: false,
+          bought: this.state.upgradeFour.bought,
+          price: this.state.upgradeFour.price,
+          increment: this.state.increment
         }
+        this.setState({
+          counter: this.state.counter + this.state.increment,
+          upgradeFour: upgradeFour
       });
     }
     else if(this.state.counter >= 500) {
-      this.setState((previousState, props) => {
-        return {
-          upgradeFiveDisabled: false,
-          counter: this.state.counter + this.state.increment
-        }
+      let upgradeFive = {
+        disbled: false,
+        bought: this.state.upgradeFive.bought,
+        price: this.state.upgradeFive.price,
+        increment: this.state.increment
+      }
+      this.setState({
+          counter: this.state.counter + this.state.increment,
+          upgradeFive: upgradeFive
       });
+    // else if(this.state.counter >= 30 && this.state.counter < 40)  {
+    //   this.setState((previousState, props) => {
+    //     return {
+    //       upgradeTwoDisabled: false,
+    //       counter: this.state.counter + this.state.increment
+    //     }
+    //   });
+    // }
+    // else if(this.state.counter >= 40 && this.state.counter < 100) {
+    //   this.setState((previousState, props) => {
+    //     return {
+    //       upgradeThreeDisabled: false,
+    //       counter: this.state.counter + this.state.increment
+    //     }
+    //   });
+    // }
+    // else if(this.state.counter >= 100 && this.state.counter < 500) {
+    //   this.setState((previousState, props) => {
+    //     return {
+    //       upgradeFourDisabled: false,
+    //       counter: this.state.counter + this.state.increment
+    //     }
+    //   });
+    // }
+    // else if(this.state.counter >= 500) {
+    //   this.setState((previousState, props) => {
+    //     return {
+    //       upgradeFiveDisabled: false,
+    //       counter: this.state.counter + this.state.increment
+    //     }
+    //   });
+    // }
     }
   }
-
   saveName = (event) => {
     this.setState({
       name: this.username.value,
@@ -105,48 +196,63 @@ class App extends Component {
   /*****************************************/
   buy = {
     upgradeOne: () => {
-    this.setState({ counter: this.state.counter - this.price.upgradeOne,
-                    boughtUpgradeOne: true,
-                    feedback: 'You bought an onion for $' + this.price.upgradeOne,
-                    feedbackVisible: true,
-                    increment: this.state.increment + 1
-    });
-  },
-    upgradeTwo: () => {
-      this.setState({ counter: this.state.counter - this.price.upgradeTwo,
-                      boughtUpgradeTwo: true,
-                      feedback: 'You bought a tomato for $' + this.price.upgradeTwo,
-                      feedbackVisible: true,
-                      increment: this.state.increment + 3
+      let upgradeOne = {
+        feedback: 'You bought an onion for $' + this.state.upgradeOne.price,
+        bought: true,
+        price: this.state.upgradeOne.price + 5
+      }
+      this.setState({
+        counter: this.state.counter - this.state.upgradeOne.price,
+        increment: this.state.increment + this.state.upgradeOne.increment,
+        upgradeOne: upgradeOne
       });
-      // componentDidMount() {
-        // this._interval = setInterval(() => (
-        //     this.setState({counter: this.state.counter + this.state.increment })
-        // ), 500);
-      // }
-      // componentWillUnmount() {
-      //     clearInterval(this._interval);
-      // }
+    },
+    upgradeTwo: () => {
+      let upgradeTwo = {
+        feedback: 'You bought a tomato for $' + this.state.upgradeTwo.price,
+        bought: true,
+        price: this.state.upgradeTwo.price + 10
+      }
+      this.setState({
+        counter: this.state.counter - this.state.upgradeTwo.price,
+        increment: this.state.increment + this.state.upgradeTwo.increment,
+        upgradeTwo: upgradeTwo
+      });
     },
     upgradeThree: () => {
-      this.setState({ counter: this.state.counter - this.price.upgradeThree,
-                      boughtUpgradeThree: true,
-                      feedback: 'You bought a garlic clove for $' + this.price.upgradeThree,
-                      increment: this.state.increment + 5
-       });
+      let upgradeThree = {
+        feedback: 'You bought a garlic clove for $' + this.state.upgradeThree.price,
+        bought: true,
+        price: this.state.upgradeThree.price + 20
+      }
+      this.setState({
+        counter: this.state.counter - this.state.upgradeThree.price,
+        increment: this.state.increment + this.state.upgradeThree.increment,
+        upgradeThree: upgradeThree
+      });
     },
     upgradeFour: () => {
-      this.setState({ counter: this.state.counter - this.price.upgradeFour,
-                      boughtUpgradeFour: true,
-                      feedback: 'You bought a chili for $' + this.price.upgradeFour,
-                      increment: this.state.increment + 10
-        });
+      let upgradeFour = {
+        feedback: 'You bought a chili for $' + this.state.upgradeFour.price,
+        bought: true,
+        price: this.state.upgradeFour.price + 30
+      }
+      this.setState({
+        counter: this.state.counter - this.state.upgradeFour.price,
+        increment: this.state.increment + this.state.upgradeFour.increment,
+        upgradeFour: upgradeFour
+      });
     },
     upgradeFive: () => {
-      this.setState({ counter: this.state.counter - this.price.upgradeFive,
-                      boughtUpgradeFive: true,
-                      feedback: 'You bought an avocado for $' + this.price.upgradeFive + '! Congratulations! You made guac!',
-                      increment: this.state.increment + 20
+      let upgradeFive = {
+        feedback: 'You bought an avocado for $' + this.state.upgradeThree.price,
+        bought: true,
+        price: this.state.upgradeFive.price + 20
+      }
+      this.setState({
+        counter: this.state.counter - this.state.upgradeFive.price,
+        increment: this.state.increment + this.state.upgradeFive.increment,
+        upgradeFive: upgradeFive
       });
     }
   }
@@ -175,23 +281,38 @@ class App extends Component {
           </Button>
           <div className="upgrades">
             <Upgrade  className="upgrade one"
-                      disabled={ this.state.upgradeOneDisabled }
+                      disabled={ this.state.upgradeOne.disabled }
                       text="Onion"
-                      price={ this.price.upgradeOne }
+                      price={ this.state.upgradeOne.price }
                       onClick={ this.buy.upgradeOne }
             />
             <Upgrade  className="upgrade two"
-                      disabled={ this.state.upgradeTwoDisabled }
+                      disabled={ this.state.upgradeTwo.disabled }
                       text="Tomato"
-                      price={ this.price.upgradeTwo }
+                      price={ this.state.upgradeTwo.price }
                       onClick={ this.buy.upgradeTwo }
             />
+
             <Upgrade  className="upgrade three"
-                      disabled={ this.state.upgradeThreeDisabled }
+                      disabled={ this.state.upgradeThree.disabled }
                       text="Garlic"
-                      price={ this.price.upgradeThree }
+                      price={ this.state.upgradeThree.price }
                       onClick={ this.buy.upgradeThree }
             />
+            <Upgrade  className="upgrade four"
+                      disabled={ this.state.upgradeFour.disabled }
+                      text="Chili"
+                      price={ this.state.upgradeFour.price }
+                      onClick={ this.buy.upgradeFour }
+            />
+
+            <Upgrade  className="upgrade five"
+                      disabled={ this.state.upgradeFive.disabled }
+                      text="Garlic"
+                      price={ this.state.upgradeFive.price }
+                      onClick={ this.buy.upgradeFive }
+            />
+            {/*
             <Upgrade  className="upgrade four"
                       disabled={ this.state.upgradeFourDisabled }
                       text="Chili"
@@ -203,7 +324,7 @@ class App extends Component {
                       text="Avocado"
                       price={ this.price.upgradeFive }
                       onClick={ this.buy.upgradeFive }
-            />
+            /> */}
           </div>
           { this.state.feedbackVisible && <Feedback><p>{ this.state.feedback }</p></Feedback> }
         </Container>

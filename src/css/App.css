@@ -128,9 +128,10 @@ button {
 /*****************************************/
 .feedback {
   position: absolute;
+  opacity: 0;
   -webkit-animation-name: katching;
   -webkit-animation-duration: 3s;
-  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: 1;
   -webkit-animation-direction: normal;
   -webkit-animation-timing-function: cubic-bezier(0, 0.28, 0.12, 0.49);
   /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */ }

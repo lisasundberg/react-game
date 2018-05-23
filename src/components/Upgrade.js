@@ -5,7 +5,7 @@ class Upgrade extends Component {
     return(
       <div className={ this.props.className }>
         <button disabled={ this.props.disabled }
-                onClick={ this.props.buy }>
+                onClick={ this.props.onClick }>
                 <p>{ this.props.text }</p>
                 <small>${ this.props.price }</small>
         </button>

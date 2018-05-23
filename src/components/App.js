@@ -28,6 +28,7 @@ class App extends Component {
     boughtUpgradeFour: false,
     boughtUpgradeFive: false,
 
+    feedbackVisible: false,
     feedback: ''
 
   }
@@ -40,29 +41,54 @@ class App extends Component {
     "upgradeFive": 500
   }
 
-  handleClick = () => {
-    if(this.state.counter < 4) {
-      this.setState({ counter: this.state.counter + this.state.increment });
+  increaseCounter = () => {
+    if(this.state.counter <= 5) {
+      //this.setState({ counter: this.state.counter + this.state.increment });
+      this.setState((previousState, props) => {
+        return {
+          counter: previousState.counter + this.state.increment
+        }
+      });
     }
-    else if(this.state.counter >= 4 && this.state.counter < 30) {
-      this.setState({ upgradeOneDisabled: false,
-                      counter: this.state.counter + this.state.increment });
+    else if(this.state.counter > 4 && this.state.counter < 30) {
+      this.setState((previousState, props) => {
+        return {
+          upgradeOneDisabled: false,
+          counter: this.state.counter + this.state.increment
+        }
+      });
     }
     else if(this.state.counter > 29 && this.state.counter < 50)  {
-      this.setState({ upgradeTwoDisabled: false,
-                      counter: this.state.counter + this.state.increment });
+      this.setState((previousState, props) => {
+        return {
+          upgradeTwoDisabled: false,
+          counter: this.state.counter + this.state.increment
+        }
+      });
     }
     else if(this.state.counter > 49 && this.state.counter < 200) {
-      this.setState({ upgradeThreeDisabled: false,
-                      counter: this.state.counter + this.state.increment });
+      this.setState((previousState, props) => {
+        return {
+          upgradeThreeDisabled: false,
+          counter: this.state.counter + this.state.increment
+        }
+      });
     }
     else if(this.state.counter > 199 && this.state.counter < 500) {
-      this.setState({ upgradeFourDisabled: false,
-                      counter: this.state.counter + this.state.increment });
+      this.setState((previousState, props) => {
+        return {
+          upgradeFourDisabled: false,
+          counter: this.state.counter + this.state.increment
+        }
+      });
     }
     else if(this.state.counter === 500) {
-      this.setState({ upgradeFiveDisabled: false,
-                      counter: this.state.counter + this.state.increment });
+      this.setState((previousState, props) => {
+        return {
+          upgradeFiveDisabled: false,
+          counter: this.state.counter + this.state.increment
+        }
+      });
     }
   }
 
@@ -82,6 +108,7 @@ class App extends Component {
     this.setState({ counter: this.state.counter - this.price.upgradeOne,
                     boughtUpgradeOne: true,
                     feedback: 'You bought an onion for $' + this.price.upgradeOne,
+                    feedbackVisible: true,
                     increment: 2
     });
   },
@@ -89,8 +116,17 @@ class App extends Component {
       this.setState({ counter: this.state.counter - this.price.upgradeTwo,
                       boughtUpgradeTwo: true,
                       feedback: 'You bought a tomato for $' + this.price.upgradeTwo,
+                      feedbackVisible: true,
                       increment: 5
       });
+      // componentDidMount() {
+        // this._interval = setInterval(() => (
+        //     this.setState({counter: this.state.counter + this.state.increment })
+        // ), 500);
+      // }
+      // componentWillUnmount() {
+      //     clearInterval(this._interval);
+      // }
     },
     upgradeThree: () => {
       this.setState({ counter: this.state.counter - this.price.upgradeThree,
@@ -132,44 +168,42 @@ class App extends Component {
           <h2>
             ${ this.state.counter }
           </h2>
-          <Button handleClick={ this.handleClick }>
+          <Button onClick={ this.increaseCounter }>
             <p>Click me!</p>
           </Button>
           <div className="upgrades">
-            <Upgrade  className="upgrade upgrade_one"
+            <Upgrade  className="upgrade one"
                       disabled={ this.state.upgradeOneDisabled }
                       text="Onion"
                       price={ this.price.upgradeOne }
-                      buy={ this.buy.upgradeOne }
+                      onClick={ this.buy.upgradeOne }
             />
-            <Upgrade  className="upgrade upgrade_two"
+            <Upgrade  className="upgrade two"
                       disabled={ this.state.upgradeTwoDisabled }
                       text="Tomato"
                       price={ this.price.upgradeTwo }
-                      buy={ this.buy.upgradeTwo }
+                      onClick={ this.buy.upgradeTwo }
             />
-            <Upgrade  className="upgrade upgrade_three"
+            <Upgrade  className="upgrade three"
                       disabled={ this.state.upgradeThreeDisabled }
                       text="Garlic"
                       price={ this.price.upgradeThree }
-                      buy={ this.buy.upgradeThree }
+                      onClick={ this.buy.upgradeThree }
             />
-            <Upgrade  className="upgrade upgrade_four"
+            <Upgrade  className="upgrade four"
                       disabled={ this.state.upgradeFourDisabled }
                       text="Chili"
                       price={ this.price.upgradeFour }
-                      buy={ this.buy.upgradeFour }
+                      onClick={ this.buy.upgradeFour }
             />
-            <Upgrade  className="upgrade upgrade_five"
+            <Upgrade  className="upgrade five"
                       disabled={this.state.upgradeFiveDisabled }
                       text="Avocado"
                       price={ this.price.upgradeFive }
-                      buy={ this.buy.upgradeFive }
+                      onClick={ this.buy.upgradeFive }
             />
           </div>
-          <Feedback>
-            <p>{ this.state.feedback }</p>
-          </Feedback>
+          { this.state.feedbackVisible && <Feedback><p>{ this.state.feedback }</p></Feedback> }
         </Container>
 
       </div>

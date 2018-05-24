@@ -241,7 +241,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header>
-          <h1 className="App-title">En klick guaca tack</h1>
+          <h1 className="App-title">Guacamole-spelet</h1>
           <p className="username">{ this.state.name }</p>
         </Header>
         <Container>

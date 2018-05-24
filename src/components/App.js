@@ -264,25 +264,25 @@ class App extends Component {
             ${ this.state.counter }
           </h2>
           <Button onClick={ this.increaseCounter }>
-            <p>Click me!</p>
+            <p>Klicka här!</p>
           </Button>
           <div className="upgrades">
             <Upgrade  className="upgrade one"
                       disabled={ this.state.upgradeOne.disabled }
-                      text="Onion"
+                      text="Lök"
                       price={ this.state.upgradeOne.price }
                       onClick={ this.buy.upgradeOne }
             />
             <Upgrade  className="upgrade two"
                       disabled={ this.state.upgradeTwo.disabled }
-                      text="Tomato"
+                      text="Tomat"
                       price={ this.state.upgradeTwo.price }
                       onClick={ this.buy.upgradeTwo }
             />
 
             <Upgrade  className="upgrade three"
                       disabled={ this.state.upgradeThree.disabled }
-                      text="Garlic"
+                      text="Vitlök"
                       price={ this.state.upgradeThree.price }
                       onClick={ this.buy.upgradeThree }
             />
@@ -295,7 +295,7 @@ class App extends Component {
 
             <Upgrade  className="upgrade five"
                       disabled={ this.state.upgradeFive.disabled }
-                      text="Avocado"
+                      text="Avokado"
                       price={ this.state.upgradeFive.price }
                       onClick={ this.buy.upgradeFive }
             />

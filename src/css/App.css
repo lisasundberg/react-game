@@ -28,6 +28,9 @@ h1 {
 h2 {
   font-size: 2em; }
 
+p {
+  line-height: 1.6; }
+
 label, input, button {
   display: block;
   margin: 0 auto 10px; }
@@ -78,20 +81,27 @@ button {
 
 .popup {
   position: fixed;
+  text-align: left;
   z-index: 999;
   border: 1px solid #000;
-  padding: 3em;
-  width: 500px;
-  height: 250px;
+  padding: 4em;
+  width: 600px;
+  height: 600px;
   left: 50%;
   top: 50%;
-  margin-left: -250px;
-  margin-top: -125px;
+  margin-left: -300px;
+  margin-top: -300px;
   background: #fff; }
+  .popup label, .popup input, .popup h3, .popup p {
+    text-align: center; }
   .popup input {
     width: 100%;
     margin-bottom: 1em;
     text-align: center; }
+  .popup button {
+    padding: 1em 4em; }
+  .popup .nameInput {
+    margin-top: 60px; }
 
 /*****************************************/
 /*************** UPGRADES ****************/

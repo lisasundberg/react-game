@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import ReactInterval from 'react-interval';
 import Header from './Header';
 import Container from './Container';
 import Button from './Button';
@@ -18,27 +18,27 @@ class App extends Component {
     upgradeOne: {
       disabled: true,
       bought: false,
-      price: 5
+      price: 10
     },
     upgradeTwo: {
       disabled: true,
       bought: false,
-      price: 30
+      price: 50
     },
     upgradeThree: {
       disabled: true,
       bought: false,
-      price: 40
+      price: 100
     },
     upgradeFour: {
       disabled: true,
       bought: false,
-      price: 100
+      price: 500
     },
     upgradeFive: {
       disabled: true,
       bought: false,
-      price: 500
+      price: 1000
     },
 
     feedback: ''
@@ -46,7 +46,7 @@ class App extends Component {
   }
 
   /*****************************************/
-  /************ INSERT USERNAME ************/
+  /************* SAVE USERNAME *************/
   /*****************************************/
   saveName = (event) => {
     this.setState({
@@ -58,26 +58,35 @@ class App extends Component {
   /*****************************************/
   /************* CLICK COUNTER *************/
   /*****************************************/
+
+  /* If click score has exceeded the price of an upgrade,
+  /* enable the upgrade */
+
   increaseCounter = () => {
-    if(this.state.counter <= 5) {
+    if(this.state.counter < this.state.upgradeOne.price) {
       this.setState({ counter: this.state.counter + this.state.increment });
     }
-    else if(this.state.counter >= 5 && this.state.counter < 30) {
+    else if(this.state.counter >= this.state.upgradeOne.price
+            && this.state.counter < this.state.upgradeTwo.price) {
       this.enable.upgradeOne();
     }
-    else if(this.state.counter >= 30 && this.state.counter < 40) {
+    else if(this.state.counter >= this.state.upgradeTwo.price
+            && this.state.counter < this.state.upgradeThree.price) {
       this.enable.upgradeTwo();
     }
-    else if(this.state.counter >= 40 && this.state.counter < 100) {
+    else if(this.state.counter >= this.state.upgradeThree.price
+            && this.state.counter < this.state.upgradeFour.price) {
       this.enable.upgradeThree();
     }
-    else if(this.state.counter >= 100 && this.state.counter < 500) {
+    else if(this.state.counter >= this.state.upgradeFour.price
+            && this.state.counter < this.state.upgradeFive.price) {
       this.enable.upgradeFour();
     }
-    else if(this.state.counter >= 500) {
+    else if(this.state.counter >= this.state.upgradeFive.price) {
       this.enable.upgradeFive();
     }
   }
+
 
   /******************************************/
   /************* ENABLE UPGRADE *************/
@@ -103,6 +112,7 @@ class App extends Component {
         increment: this.state.increment
       }
       this.setState({
+
         counter: this.state.counter + this.state.increment,
         upgradeTwo
       });
@@ -149,6 +159,11 @@ class App extends Component {
   /*****************************************/
   /************* BUY UPGRADES **************/
   /*****************************************/
+
+  /* When buying an upgrade, show feedback to user,
+  /* increase the increment of the counter and
+  /* increase price of upgrade */
+
   buy = {
     upgradeOne: () => {
       let upgradeOne = {
@@ -232,12 +247,19 @@ class App extends Component {
         <Container>
           { this.state.popupVisible &&
             <Popup>
-              <label htmlFor="username">Vad heter du?</label>
-              <input type="text" name="username" ref={ input => this.username = input } autoComplete="off"/>
-              <button onClick={ this.saveName }> OK GO </button>
+              <h3>Guacamole-spelet</h3>
+              <p>1.<br />Klicka på knappen för att tjäna pengar att köpa ingredienser för.</p>
+              <p>2.<br />För varje ingrediens du köper tjänar du mer pengar per klick.</p>
+              <p>3.<br />Ingrediensen blir dyrare ju fler gånger du köper den, men gör också att du tjänar mer per klick.</p>
+              <p>4.<br />När du fått ihop alla ingredienser har du kommit i guacamål! ( 😬)</p>
+              <div className="nameInput">
+                <label htmlFor="username">Vad heter du?</label>
+                <input type="text" name="username" ref={ input => this.username = input } autoComplete="off"/>
+                <button onClick={ this.saveName }> OK GO </button>
+              </div>
             </Popup>
           }
-          <p>För varje klick tjänar du ${ this.state.increment }</p>
+          <p>Varje klick är värt ${ this.state.increment }</p>
           <h2>
             ${ this.state.counter }
           </h2>
@@ -273,7 +295,7 @@ class App extends Component {
 
             <Upgrade  className="upgrade five"
                       disabled={ this.state.upgradeFive.disabled }
-                      text="Garlic"
+                      text="Avocado"
                       price={ this.state.upgradeFive.price }
                       onClick={ this.buy.upgradeFive }
             />

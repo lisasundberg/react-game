@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactInterval from 'react-interval';
+// import ReactInterval from 'react-interval';
 import Header from './Header';
 import Container from './Container';
 import Button from './Button';
@@ -13,7 +13,7 @@ class App extends Component {
     name: '',
     counter: 0,
     increment: 1,
-    popupVisible: false,
+    popupVisible: true,
 
     upgradeOne: {
       disabled: true,
@@ -59,14 +59,15 @@ class App extends Component {
   /************* CLICK COUNTER *************/
   /*****************************************/
 
+  increaseCounter = () => {
+    this.setState({ counter: this.state.counter + this.state.increment });
+    this.checkForUpgrades();
+  }
+
   /* If click score has exceeded the price of an upgrade,
   /* enable the upgrade */
-
-  increaseCounter = () => {
-    if(this.state.counter < this.state.upgradeOne.price) {
-      this.setState({ counter: this.state.counter + this.state.increment });
-    }
-    else if(this.state.counter >= this.state.upgradeOne.price
+  checkForUpgrades = () => {
+    if(this.state.counter >= this.state.upgradeOne.price
             && this.state.counter < this.state.upgradeTwo.price) {
       this.enable.upgradeOne();
     }
@@ -86,7 +87,6 @@ class App extends Component {
       this.enable.upgradeFive();
     }
   }
-
 
   /******************************************/
   /************* ENABLE UPGRADE *************/

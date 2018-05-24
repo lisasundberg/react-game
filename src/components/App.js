@@ -13,7 +13,7 @@ class App extends Component {
     name: '',
     counter: 0,
     increment: 1,
-    popupVisible: true,
+    popupVisible: false,
 
     upgradeOne: {
       disabled: true,
@@ -103,6 +103,12 @@ class App extends Component {
         counter: this.state.counter + this.state.increment,
         upgradeOne
       });
+      // this.setState((previousState, props) => {
+      //   return {
+      //     counter: this.state.counter + this.state.increment,
+      //     upgradeOne
+      //   }
+      // });
     },
     upgradeTwo: () => {
       let upgradeTwo = {

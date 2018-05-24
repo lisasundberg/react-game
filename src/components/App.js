@@ -9,37 +9,6 @@ import Feedback from './Feedback';
 import './../css/App.css';
 
 class App extends Component {
-  // state = {
-  //   name: '',
-  //   counter: 0,
-  //   increment: 1,
-  //
-  //   popupVisible: false,
-  //
-  //   upgradeOneDisabled: true,
-  //   upgradeTwoDisabled: true,
-  //   upgradeThreeDisabled: true,
-  //   upgradeFourDisabled: true,
-  //   upgradeFiveDisabled: true,
-  //
-  //   boughtUpgradeOne: false,
-  //   boughtUpgradeTwo: false,
-  //   boughtUpgradeThree: false,
-  //   boughtUpgradeFour: false,
-  //   boughtUpgradeFive: false,
-  //
-  //   feedbackVisible: false,
-  //   feedback: ''
-  //
-  // }
-  //
-  // price = {
-  //   "upgradeOne": 5,
-  //   "upgradeTwo": 30,
-  //   "upgradeThree": 40,
-  //   "upgradeFour": 100,
-  //   "upgradeFive": 500
-  // }
   state = {
     name: '',
     counter: 0,
@@ -77,62 +46,92 @@ class App extends Component {
   }
 
   /*****************************************/
+  /************ INSERT USERNAME ************/
+  /*****************************************/
+  saveName = (event) => {
+    this.setState({
+      name: this.username.value,
+      popupVisible: false
+    });
+  }
+
+  /*****************************************/
   /************* CLICK COUNTER *************/
   /*****************************************/
-
   increaseCounter = () => {
     if(this.state.counter <= 5) {
       this.setState({ counter: this.state.counter + this.state.increment });
     }
-  else if(this.state.counter >= 5 && this.state.counter < 30) {
-        let upgradeOne = {
-          disbled: false,
-          bought: this.state.upgradeOne.bought,
-          price: this.state.upgradeOne.price,
-          increment: this.state.increment
-        }
-        this.setState({
-          counter: this.state.counter + this.state.increment,
-          upgradeOne: upgradeOne
-      });
+    else if(this.state.counter >= 5 && this.state.counter < 30) {
+      this.enable.upgradeOne();
     }
     else if(this.state.counter >= 30 && this.state.counter < 40) {
-        let upgradeTwo = {
-          disbled: false,
-          bought: this.state.upgradeTwo.bought,
-          price: this.state.upgradeTwo.price,
-          increment: this.state.increment
-        }
-        this.setState({
-          counter: this.state.counter + this.state.increment,
-          upgradeTwo: upgradeTwo
-      });
+      this.enable.upgradeTwo();
     }
     else if(this.state.counter >= 40 && this.state.counter < 100) {
-        let upgradeThree = {
-          disbled: false,
-          bought: this.state.upgradeThree.bought,
-          price: this.state.upgradeThree.price,
-          increment: this.state.increment
-        }
-        this.setState({
-          counter: this.state.counter + this.state.increment,
-          upgradeThree: upgradeThree
-      });
+      this.enable.upgradeThree();
     }
     else if(this.state.counter >= 100 && this.state.counter < 500) {
-        let upgradeFour = {
-          disbled: false,
-          bought: this.state.upgradeFour.bought,
-          price: this.state.upgradeFour.price,
-          increment: this.state.increment
-        }
-        this.setState({
-          counter: this.state.counter + this.state.increment,
-          upgradeFour: upgradeFour
-      });
+      this.enable.upgradeFour();
     }
     else if(this.state.counter >= 500) {
+      this.enable.upgradeFive();
+    }
+  }
+
+  /******************************************/
+  /************* ENABLE UPGRADE *************/
+  /******************************************/
+  enable = {
+    upgradeOne: () => {
+      let upgradeOne = {
+        disbled: false,
+        bought: this.state.upgradeOne.bought,
+        price: this.state.upgradeOne.price,
+        increment: this.state.increment
+      }
+      this.setState({
+        counter: this.state.counter + this.state.increment,
+        upgradeOne
+      });
+    },
+    upgradeTwo: () => {
+      let upgradeTwo = {
+        disbled: false,
+        bought: this.state.upgradeTwo.bought,
+        price: this.state.upgradeTwo.price,
+        increment: this.state.increment
+      }
+      this.setState({
+        counter: this.state.counter + this.state.increment,
+        upgradeTwo
+      });
+    },
+    upgradeThree: () => {
+      let upgradeThree = {
+        disbled: false,
+        bought: this.state.upgradeThree.bought,
+        price: this.state.upgradeThree.price,
+        increment: this.state.increment
+      }
+      this.setState({
+        counter: this.state.counter + this.state.increment,
+        upgradeThree
+      });
+    },
+    upgradeFour: () => {
+      let upgradeFour = {
+        disbled: false,
+        bought: this.state.upgradeFour.bought,
+        price: this.state.upgradeFour.price,
+        increment: this.state.increment
+      }
+      this.setState({
+        counter: this.state.counter + this.state.increment,
+        upgradeFour
+      });
+    },
+    upgradeFive: () => {
       let upgradeFive = {
         disbled: false,
         bought: this.state.upgradeFive.bought,
@@ -141,15 +140,9 @@ class App extends Component {
       }
       this.setState({
           counter: this.state.counter + this.state.increment,
-          upgradeFive: upgradeFive
+          upgradeFive
       });
     }
-  }
-  saveName = (event) => {
-    this.setState({
-      name: this.username.value,
-      popupVisible: false
-    });
   }
 
 
@@ -284,19 +277,6 @@ class App extends Component {
                       price={ this.state.upgradeFive.price }
                       onClick={ this.buy.upgradeFive }
             />
-            {/*
-            <Upgrade  className="upgrade four"
-                      disabled={ this.state.upgradeFourDisabled }
-                      text="Chili"
-                      price={ this.price.upgradeFour }
-                      onClick={ this.buy.upgradeFour }
-            />
-            <Upgrade  className="upgrade five"
-                      disabled={this.state.upgradeFiveDisabled }
-                      text="Avocado"
-                      price={ this.price.upgradeFive }
-                      onClick={ this.buy.upgradeFive }
-            /> */}
           </div>
           { this.state.feedbackVisible && <Feedback><p>{ this.state.feedback }</p></Feedback> }
         </Container>

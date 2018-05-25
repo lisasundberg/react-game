@@ -14,6 +14,7 @@ class App extends Component {
     counter: 0,
     increment: 1,
     popupVisible: false,
+    feedbackVisible: false,
 
     upgradeOne: {
       disabled: true,
@@ -40,9 +41,7 @@ class App extends Component {
       bought: false,
       price: 1000
     },
-
     feedback: ''
-
   }
 
   /*****************************************/
@@ -105,7 +104,7 @@ class App extends Component {
       });
       // this.setState((prevState, props) => ({
       //   counter: prevState.counter + this.state.increment,
-      //     upgradeOne
+      //   upgradeOne
       // }));
     },
     upgradeTwo: () => {
@@ -176,31 +175,33 @@ class App extends Component {
   buy = {
     upgradeOne: () => {
       let upgradeOne = {
-        feedback: 'You bought an onion for $' + this.state.upgradeOne.price,
         disabled: false,
         bought: true,
         increment: 2,
         price: this.state.upgradeOne.price + 5
       }
       this.setState({
+        feedback: 'You bought an onion for $' + this.state.upgradeOne.price,
         counter: this.state.counter - this.state.upgradeOne.price,
         increment: this.state.increment + this.state.upgradeOne.increment,
         upgradeOne: upgradeOne
       });
+      this.showFeedback();
     },
     upgradeTwo: () => {
       let upgradeTwo = {
-        feedback: 'You bought a tomato for $' + this.state.upgradeTwo.price,
         disabled: false,
         bought: true,
         increment: 3,
         price: this.state.upgradeTwo.price + 10
       }
       this.setState({
+        feedback: 'You bought a tomato for $' + this.state.upgradeTwo.price,
         counter: this.state.counter - this.state.upgradeTwo.price,
         increment: this.state.increment + this.state.upgradeTwo.increment,
         upgradeTwo: upgradeTwo
       });
+      this.showFeedback();
     },
     upgradeThree: () => {
       let upgradeThree = {
@@ -215,6 +216,7 @@ class App extends Component {
         increment: this.state.increment + this.state.upgradeThree.increment,
         upgradeThree: upgradeThree
       });
+      this.showFeedback();
     },
     upgradeFour: () => {
       let upgradeFour = {
@@ -229,6 +231,7 @@ class App extends Component {
         increment: this.state.increment + this.state.upgradeFour.increment,
         upgradeFour: upgradeFour
       });
+      this.showFeedback();
     },
     upgradeFive: () => {
       let upgradeFive = {
@@ -243,6 +246,7 @@ class App extends Component {
         increment: this.state.increment + this.state.upgradeFive.increment,
         upgradeFive: upgradeFive
       });
+      this.showFeedback();
     }
   }
 
@@ -260,7 +264,7 @@ class App extends Component {
               <p>1.<br />Klicka på knappen för att tjäna pengar att köpa ingredienser för.</p>
               <p>2.<br />För varje ingrediens du köper tjänar du mer pengar per klick.</p>
               <p>3.<br />Ingrediensen blir dyrare ju fler gånger du köper den, men gör också att du tjänar mer per klick.</p>
-              <p>4.<br />När du fått ihop alla ingredienser har du kommit i guacamål! ( 😬)</p>
+              <p>4.<br />När du fått ihop alla ingredienser har du kommit i (guaca)mål! ( 😬)</p>
               <div className="nameInput">
                 <label htmlFor="username">Vad heter du?</label>
                 <input type="text" name="username" ref={ input => this.username = input } autoComplete="off"/>

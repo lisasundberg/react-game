@@ -102,10 +102,6 @@ class App extends Component {
       this.setState({
         upgradeOne
       });
-      // this.setState((prevState, props) => ({
-      //   counter: prevState.counter + this.state.increment,
-      //   upgradeOne
-      // }));
     },
     upgradeTwo: () => {
       let upgradeTwo = {
@@ -162,6 +158,13 @@ class App extends Component {
         feedbackVisible: false
       });
     }, 3000);
+
+    // console.log(this.feedback);
+    // const feedback = this.feedback;
+    // feedback.classList.add('visible');
+    // setTimeout(() => {
+    //   feedback.classList.remove('visible');
+    // }, 3000);
   }
 
   /*****************************************/
@@ -181,11 +184,16 @@ class App extends Component {
         price: this.state.upgradeOne.price + 5
       }
       this.setState({
-        feedback: 'You bought an onion for $' + this.state.upgradeOne.price,
+        feedback: 'Lök -$' + this.state.upgradeOne.price,
         counter: this.state.counter - this.state.upgradeOne.price,
         increment: this.state.increment + this.state.upgradeOne.increment,
-        upgradeOne: upgradeOne
+        upgradeOne
       });
+      // setInterval(function(){
+      //   this.setState({
+      //     counter: this.state.counter + this.state.increment
+      //   });
+      // }, 1000);
       this.showFeedback();
     },
     upgradeTwo: () => {
@@ -196,55 +204,55 @@ class App extends Component {
         price: this.state.upgradeTwo.price + 10
       }
       this.setState({
-        feedback: 'You bought a tomato for $' + this.state.upgradeTwo.price,
+        feedback: 'Tomat -$' + this.state.upgradeTwo.price,
         counter: this.state.counter - this.state.upgradeTwo.price,
         increment: this.state.increment + this.state.upgradeTwo.increment,
-        upgradeTwo: upgradeTwo
+        upgradeTwo
       });
       this.showFeedback();
     },
     upgradeThree: () => {
       let upgradeThree = {
-        feedback: 'You bought a garlic clove for $' + this.state.upgradeThree.price,
         disabled: false,
         bought: true,
         increment: 10,
         price: this.state.upgradeThree.price + 20
       }
       this.setState({
+        feedback: 'Vitlök -$' + this.state.upgradeThree.price,
         counter: this.state.counter - this.state.upgradeThree.price,
         increment: this.state.increment + this.state.upgradeThree.increment,
-        upgradeThree: upgradeThree
+        upgradeThree
       });
       this.showFeedback();
     },
     upgradeFour: () => {
       let upgradeFour = {
-        feedback: 'You bought a chili for $' + this.state.upgradeFour.price,
         disabled: false,
         bought: true,
         increment: 20,
         price: this.state.upgradeFour.price + 30
       }
       this.setState({
+        feedback: 'Chili -$' + this.state.upgradeFour.price,
         counter: this.state.counter - this.state.upgradeFour.price,
         increment: this.state.increment + this.state.upgradeFour.increment,
-        upgradeFour: upgradeFour
+        upgradeFour
       });
       this.showFeedback();
     },
     upgradeFive: () => {
       let upgradeFive = {
-        feedback: 'You bought an avocado for $' + this.state.upgradeThree.price,
         disabled: false,
         bought: true,
         increment: 30,
         price: this.state.upgradeFive.price + 20
       }
       this.setState({
+        feedback: 'Avokado -$' + this.state.upgradeThree.price,
         counter: this.state.counter - this.state.upgradeFive.price,
         increment: this.state.increment + this.state.upgradeFive.increment,
-        upgradeFive: upgradeFive
+        upgradeFive
       });
       this.showFeedback();
     }
@@ -313,9 +321,14 @@ class App extends Component {
                       onClick={ this.buy.upgradeFive }
             />
           </div>
-          { this.state.feedbackVisible && <Feedback><p>{ this.state.feedback }</p></Feedback> }
+          { this.state.feedbackVisible &&
+              <Feedback>
+                <p ref={ feedback => this.feedback = feedback }>
+                  { this.state.feedback }
+                </p>
+              </Feedback>
+          }
         </Container>
-
       </div>
     );
   }

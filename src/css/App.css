@@ -114,15 +114,15 @@ button {
   margin: 0 auto; }
   .upgrades .upgrade + .upgrade {
     margin-left: 20px; }
-  .upgrades .one button {
+  .upgrades .upgrade1 button {
     background: #fff37c; }
-  .upgrades .two button {
+  .upgrades .upgrade2 button {
     background: tomato; }
-  .upgrades .three button {
+  .upgrades .upgrade3 button {
     background: wheat; }
-  .upgrades .four button {
+  .upgrades .upgrade4 button {
     background: red; }
-  .upgrades .five button {
+  .upgrades .upgrade5 button {
     background: #8ddd8d; }
   .upgrades button {
     cursor: pointer;

@@ -92,6 +92,7 @@ class App extends Component {
   //KAN JAG SKAPA FUNKTIONEN SÅ HÄR?
   // enable = {
   //   for (i = 1; i < 5; i++) {
+  //     console.log(`upgrade${[i]}`);
   //     upgrade[i]: () => {
   //       let upgrade[i] = {
   //         disbled: false,
@@ -104,6 +105,19 @@ class App extends Component {
   //       });
   //     }
   //   }
+
+
+  // upgrade1: () => {
+  //   let upgrade1 = {
+  //     bought: this.state[`upgrade${upgrade}`].bought,
+  //     price: this.state.upgrade1.price,
+  //     increment: this.state.increment
+  //   }
+  //   this.setState({
+  //     upgrade1
+  //   });
+  // }
+
 enable = {
     upgrade1: () => {
       let upgrade1 = {
@@ -193,7 +207,7 @@ enable = {
         upgrade1
       });
       // VARFÖR FUNKAR INTE DETTA?
-      // setInterval(function(){
+      // setInterval(() => {
       //   this.setState({
       //     counter: this.state.counter + this.state.increment
       //   });
@@ -263,23 +277,6 @@ enable = {
   }
 
   render() {
-
-    //FRÅGA JESPER OM MAN KAN GÖRA SÅ HÄR???
-    // const upgrades = [];
-    // const upgradeNames = [Lök, Tomat, Vitlök, Chili, Avokado];
-    // for (let i = 1; i < upgradeNames.length; i++) {
-    //     upgrades.push(
-    //       <Upgrade  className=`upgrade ${[i]}`
-    //                 text="Lök"
-    //                 counter={ this.state.counter }
-    //                 buyValue={ 10 }
-    //                 price={ 10 }
-    //                 onClick={ this.buy.upgrade[i] }
-    //       />
-    //     );
-    // }
-    // console.log(upgrades);
-
     return (
       <div className="App">
         <Header>
@@ -310,34 +307,33 @@ enable = {
           </Button>
 
           <div className="upgrades">
-            {/* { upgrades } */}
-            <Upgrade  className="upgrade one"
+            <Upgrade  className="upgrade upgrade1"
                       text="Lök"
                       counter={this.state.counter}
                       price={ this.state.upgrade1.price }
                       onClick={ this.buy.upgrade1 }
             />
-            <Upgrade  className="upgrade two"
+            <Upgrade  className="upgrade upgrade2"
                       text="Tomat"
                       counter={this.state.counter}
                       price={ this.state.upgrade2.price }
                       onClick={ this.buy.upgrade2 }
             />
 
-            <Upgrade  className="upgrade three"
+            <Upgrade  className="upgrade upgrade3"
                       text="Vitlök"
                       counter={ this.state.counter }
                       price={ this.state.upgrade3.price }
                       onClick={ this.buy.upgrade3 }
             />
-            <Upgrade  className="upgrade four"
+            <Upgrade  className="upgrade upgrade4"
                       text="Chili"
                       counter={this.state.counter}
                       price={ this.state.upgrade4.price }
                       onClick={ this.buy.upgrade4 }
             />
 
-            <Upgrade  className="upgrade five"
+            <Upgrade  className="upgrade upgrade5"
                       text="Avokado"
                       counter={ this.state.counter }
                       price={ this.state.upgrade5.price }

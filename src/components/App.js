@@ -14,6 +14,7 @@ class App extends Component {
     name: '',
     counter: 0,
     increment: 1,
+    autoIncrement: false,
 
     popupVisible: false,
     feedbackVisible: false,
@@ -57,68 +58,53 @@ class App extends Component {
   /*****************************************/
 
   increaseCounter = () => {
-    this.checkForUpgrades();
+    // this.checkForUpgrades();
     this.setState({ counter: this.state.counter + this.state.increment });
   }
 
   /* If click score has exceeded the price of an upgrade,
   /* enable the upgrade */
-  checkForUpgrades = () => {
-    const newCounter = this.state.counter + this.state.increment;
-    if(newCounter >= this.state.upgrade1.price
-            && newCounter < this.state.upgrade2.price) {
-      this.enable.upgrade1();
-    }
-    else if(newCounter >= this.state.upgrade2.price
-            && newCounter < this.state.upgrade3.price) {
-      this.enable.upgrade2();
-    }
-    else if(newCounter >= this.state.upgrade3.price
-            && newCounter < this.state.upgrade4.price) {
-      this.enable.upgrade3();
-    }
-    else if(newCounter >= this.state.upgrade4.price
-            && newCounter < this.state.upgrade5.price) {
-      this.enable.upgrade4();
-    }
-    else if(newCounter >= this.state.upgrade5.price) {
-      this.enable.upgrade5();
-    }
-  }
+  // checkForUpgrades = () => {
+  //   const newCounter = this.state.counter + this.state.increment;
+  //   if(newCounter >= this.state.upgrade1.price
+  //           && newCounter < this.state.upgrade2.price) {
+  //     this.enable.upgrade1();
+  //   }
+  //   else if(newCounter >= this.state.upgrade2.price
+  //           && newCounter < this.state.upgrade3.price) {
+  //     this.enable.upgrade2();
+  //   }
+  //   else if(newCounter >= this.state.upgrade3.price
+  //           && newCounter < this.state.upgrade4.price) {
+  //     this.enable.upgrade3();
+  //   }
+  //   else if(newCounter >= this.state.upgrade4.price
+  //           && newCounter < this.state.upgrade5.price) {
+  //     this.enable.upgrade4();
+  //   }
+  //   else if(newCounter >= this.state.upgrade5.price) {
+  //     this.enable.upgrade5();
+  //   }
+  // }
+
+
+  // Trigger auto-increment
+  // triggerAutoIncrement = () => {
+  //   if(this.state.autoIncrement) {
+  //     setInterval(() => {
+  //       this.setState({
+  //         counter: this.state.counter + this.state.increment
+  //       });
+  //     }, 1000);
+  //   }
+  // }
+  // this.triggerAutoIncrement();
 
   /******************************************/
   /************* ENABLE UPGRADE *************/
   /******************************************/
-  //KAN JAG SKAPA FUNKTIONEN SÅ HÄR?
-  // enable = {
-  //   for (i = 1; i < 5; i++) {
-  //     console.log(`upgrade${[i]}`);
-  //     upgrade[i]: () => {
-  //       let upgrade[i] = {
-  //         disbled: false,
-  //         bought: this.state.upgrade[i].bought,
-  //         price: this.state.upgrade[i].price,
-  //         increment: this.state.increment
-  //       }
-  //       this.setState({
-  //         upgrade[i]
-  //       });
-  //     }
-  //   }
 
-
-  // upgrade1: () => {
-  //   let upgrade1 = {
-  //     bought: this.state[`upgrade${upgrade}`].bought,
-  //     price: this.state.upgrade1.price,
-  //     increment: this.state.increment
-  //   }
-  //   this.setState({
-  //     upgrade1
-  //   });
-  // }
-
-enable = {
+  enable = {
     upgrade1: () => {
       let upgrade1 = {
         bought: this.state.upgrade1.bought,
@@ -182,6 +168,7 @@ enable = {
     }, 3000);
   }
 
+
   /*****************************************/
   /************* BUY UPGRADES **************/
   /*****************************************/
@@ -204,14 +191,9 @@ enable = {
         feedback: 'Lök -$' + this.state.upgrade1.price,
         counter: this.state.counter - this.state.upgrade1.price,
         increment: this.state.increment + this.state.upgrade1.increment,
-        upgrade1
+        upgrade1,
+        autoIncrement: true
       });
-      // VARFÖR FUNKAR INTE DETTA?
-      // setInterval(() => {
-      //   this.setState({
-      //     counter: this.state.counter + this.state.increment
-      //   });
-      // }, 1000);
       this.showFeedback();
     },
     upgrade2: () => {
@@ -225,6 +207,7 @@ enable = {
         feedback: 'Tomat -$' + this.state.upgrade2.price,
         counter: this.state.counter - this.state.upgrade2.price,
         increment: this.state.increment + this.state.upgrade2.increment,
+        autoIncrement: false,
         upgrade2
       });
       this.showFeedback();
@@ -240,6 +223,7 @@ enable = {
         feedback: 'Vitlök -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade3.price,
         increment: this.state.increment + this.state.upgrade3.increment,
+        autoIncrement: false,
         upgrade3
       });
       this.showFeedback();
@@ -255,6 +239,7 @@ enable = {
         feedback: 'Chili -$' + this.state.upgrade4.price,
         counter: this.state.counter - this.state.upgrade4.price,
         increment: this.state.increment + this.state.upgrade4.increment,
+        autoIncrement: false,
         upgrade4
       });
       this.showFeedback();
@@ -270,6 +255,7 @@ enable = {
         feedback: 'Avokado -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade5.price,
         increment: this.state.increment + this.state.upgrade5.increment,
+        autoIncrement: false,
         upgrade5
       });
       this.showFeedback();

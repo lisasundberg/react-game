@@ -21,7 +21,7 @@ class App extends Component {
     increment: 1,
     autoIncrement: false,
 
-    popupVisible: true,
+    popupVisible: false,
     feedbackVisible: false,
 
     upgrade1price: 10,
@@ -37,12 +37,14 @@ class App extends Component {
   /*****************************************/
   /************* SAVE USERNAME *************/
   /*****************************************/
+
   saveName = (event) => {
     this.setState({
       name: this.username.value,
       popupVisible: false
     });
   }
+
 
   /*****************************************/
   /************* CLICK COUNTER *************/
@@ -52,10 +54,10 @@ class App extends Component {
     this.setState({ counter: this.state.counter + this.state.increment });
   }
 
-
   /*****************************************/
   /******** BUY UPGRADE-FEEDBACK ***********/
   /*****************************************/
+
   showFeedback = () => {
     this.setState({
       feedbackVisible: true
@@ -73,32 +75,12 @@ class App extends Component {
   /*****************************************/
 
   triggerAutoIncrement = () => {
-    // let autoIncrement = setInterval(this.increaseCounter, 1000);
-    // this.state.autoIncrement ? autoIncrement : autoIncrement = false;
-
-    let autoIncrement;
-    if(this.state.autoIncrement) {
-      let autoIncrement = setInterval(this.increaseCounter, 1000);
-    } else {
-      autoIncrement = false;
-    }
-
-    // var handle = setInterval(drawAll, 20);
-    //
-    // // When you want to cancel it:
-    // clearInterval(handle);
-    // handle = 0; // I just do this so I know I've cleared the interval
-
-    // if (this.state.autoIncrement) {
-    //     setInterval(() => {
-    //       this.setState({
-    //         counter: this.state.counter + this.state.increment
-    //       });
-    //     }, 1000);
-    //   }
-    // else {
-    //   clearInterval();
-    // }
+    if(this.state.autoIncrement){
+       clearInterval(this.autoIncrement);
+       this.autoIncrement = setInterval(this.increaseCounter, 1000);
+     } else {
+       clearInterval(this.autoIncrement);
+     }
   }
 
 
@@ -170,8 +152,8 @@ class App extends Component {
       <div className="App">
 
         <Header username={ this.state.name } />
-        
         <Container>
+
           { this.state.popupVisible &&
             <Popup>
               <Instructions />
@@ -180,7 +162,6 @@ class App extends Component {
           }
 
           <CurrentIncrement value={ this.state.increment } />
-
           <Counter value={ this.state.counter } />
           <Button onClick={ this.increaseCounter } text="Klicka här!" />
 
@@ -219,11 +200,11 @@ class App extends Component {
             />
           </div>
           { this.state.feedbackVisible &&
-              <Feedback>
-                <p ref={ feedback => this.feedback = feedback }>
-                  { this.state.feedback }
-                </p>
-              </Feedback>
+            <Feedback>
+              <p ref={ feedback => this.feedback = feedback }>
+                { this.state.feedback }
+              </p>
+            </Feedback>
           }
         </Container>
       </div>

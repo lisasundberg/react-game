@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-// import ReactInterval from 'react-interval';
-import Header from './Header';
-import Container from './Container';
-import Button from './Button';
-import Popup from './Popup';
-// import NameInput from './NameInput';
-import Upgrade from './Upgrade';
-import Feedback from './Feedback';
+import Header from './layout/Header';
+import Container from './layout/Container';
+
+import Popup from './intro/Popup';
+import Instructions from './intro/Instructions';
+import NameInput from './intro/NameInput';
+
+import Button from './game/Button';
+import Upgrade from './game/Upgrade';
+import Feedback from './game/Feedback';
+
 import './../css/App.css';
 
 class App extends Component {
@@ -16,7 +19,7 @@ class App extends Component {
     increment: 1,
     autoIncrement: false,
 
-    popupVisible: false,
+    popupVisible: true,
     feedbackVisible: false,
 
     upgrade1price: 10,
@@ -68,9 +71,16 @@ class App extends Component {
   /*****************************************/
 
   triggerAutoIncrement = () => {
-    let autoIncrement = setInterval(this.increaseCounter, 1000);
+    // let autoIncrement = setInterval(this.increaseCounter, 1000);
+    // this.state.autoIncrement ? autoIncrement : autoIncrement = false;
 
-    this.state.autoIncrement ? autoIncrement : autoIncrement = 0;
+    let autoIncrement;
+    if(this.state.autoIncrement) {
+      let autoIncrement = setInterval(this.increaseCounter, 1000);
+    } else {
+      autoIncrement = false;
+    }
+
     // var handle = setInterval(drawAll, 20);
     //
     // // When you want to cancel it:

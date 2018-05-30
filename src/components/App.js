@@ -83,7 +83,6 @@ class App extends Component {
       // const nyttObjekt = Object.assign({}, detGamlaObjektet, { enAvKeysen: value });
       // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1.price + 5 });
       let upgrade1 = {
-        disabled: false,
         price: this.state.upgrade1.price + 5
       }
       this.setState({
@@ -101,8 +100,7 @@ class App extends Component {
     },
     upgrade2: () => {
       let upgrade2 = {
-        disabled: false,
-        price: this.state.upgrade2.price + 10
+        price: this.state.upgrade2.price * 2
       }
       this.setState({
         feedback: 'Tomat -$' + this.state.upgrade2.price,
@@ -114,7 +112,6 @@ class App extends Component {
     },
     upgrade3: () => {
       let upgrade3 = {
-        disabled: false,
         price: this.state.upgrade3.price + 20
       }
       this.setState({
@@ -127,7 +124,6 @@ class App extends Component {
     },
     upgrade4: () => {
       let upgrade4 = {
-        disabled: false,
         price: this.state.upgrade4.price + 30
       }
       this.setState({
@@ -140,7 +136,6 @@ class App extends Component {
     },
     upgrade5: () => {
       let upgrade5 = {
-        disabled: false,
         price: this.state.upgrade5.price + 20
       }
       this.setState({

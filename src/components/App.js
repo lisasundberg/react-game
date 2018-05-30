@@ -19,23 +19,18 @@ class App extends Component {
     feedbackVisible: false,
 
     upgrade1: {
-      bought: false,
       price: 10
     },
     upgrade2: {
-      bought: false,
       price: 50
     },
     upgrade3: {
-      bought: false,
       price: 100
     },
     upgrade4: {
-      bought: false,
       price: 500
     },
     upgrade5: {
-      bought: false,
       price: 1000
     },
     feedback: ''
@@ -89,25 +84,10 @@ class App extends Component {
   /******************************************/
   /************* ENABLE UPGRADE *************/
   /******************************************/
-  //KAN JAG SKAPA FUNKTIONEN SÅ HÄR?
-  // enable = {
-  //   for (i = 1; i < 5; i++) {
-  //     upgrade[i]: () => {
-  //       let upgrade[i] = {
-  //         disbled: false,
-  //         bought: this.state.upgrade[i].bought,
-  //         price: this.state.upgrade[i].price,
-  //         increment: this.state.increment
-  //       }
-  //       this.setState({
-  //         upgrade[i]
-  //       });
-  //     }
-  //   }
+
 enable = {
     upgrade1: () => {
       let upgrade1 = {
-        bought: this.state.upgrade1.bought,
         price: this.state.upgrade1.price,
         increment: this.state.increment
       }
@@ -117,7 +97,6 @@ enable = {
     },
     upgrade2: () => {
       let upgrade2 = {
-        bought: this.state.upgrade2.bought,
         price: this.state.upgrade2.price,
         increment: this.state.increment
       }
@@ -127,7 +106,6 @@ enable = {
     },
     upgrade3: () => {
       let upgrade3 = {
-        bought: this.state.upgrade3.bought,
         price: this.state.upgrade3.price,
         increment: this.state.increment
       }
@@ -137,7 +115,6 @@ enable = {
     },
     upgrade4: () => {
       let upgrade4 = {
-        bought: this.state.upgrade4.bought,
         price: this.state.upgrade4.price,
         increment: this.state.increment
       }
@@ -147,7 +124,6 @@ enable = {
     },
     upgrade5: () => {
       let upgrade5 = {
-        bought: this.state.upgrade5.bought,
         price: this.state.upgrade5.price,
         increment: this.state.increment
       }
@@ -182,7 +158,6 @@ enable = {
       // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1.price + 5 });
       let upgrade1 = {
         disabled: false,
-        bought: true,
         increment: 2,
         price: this.state.upgrade1.price + 5
       }
@@ -192,8 +167,7 @@ enable = {
         increment: this.state.increment + this.state.upgrade1.increment,
         upgrade1
       });
-      // VARFÖR FUNKAR INTE DETTA?
-      // setInterval(function(){
+      // setInterval(() => {
       //   this.setState({
       //     counter: this.state.counter + this.state.increment
       //   });
@@ -203,7 +177,6 @@ enable = {
     upgrade2: () => {
       let upgrade2 = {
         disabled: false,
-        bought: true,
         increment: 3,
         price: this.state.upgrade2.price + 10
       }
@@ -218,7 +191,6 @@ enable = {
     upgrade3: () => {
       let upgrade3 = {
         disabled: false,
-        bought: true,
         increment: 10,
         price: this.state.upgrade3.price + 20
       }
@@ -233,7 +205,6 @@ enable = {
     upgrade4: () => {
       let upgrade4 = {
         disabled: false,
-        bought: true,
         increment: 20,
         price: this.state.upgrade4.price + 30
       }
@@ -248,7 +219,6 @@ enable = {
     upgrade5: () => {
       let upgrade5 = {
         disabled: false,
-        bought: true,
         increment: 30,
         price: this.state.upgrade5.price + 20
       }
@@ -263,23 +233,6 @@ enable = {
   }
 
   render() {
-
-    //FRÅGA JESPER OM MAN KAN GÖRA SÅ HÄR???
-    // const upgrades = [];
-    // const upgradeNames = [Lök, Tomat, Vitlök, Chili, Avokado];
-    // for (let i = 1; i < upgradeNames.length; i++) {
-    //     upgrades.push(
-    //       <Upgrade  className=`upgrade ${[i]}`
-    //                 text="Lök"
-    //                 counter={ this.state.counter }
-    //                 buyValue={ 10 }
-    //                 price={ 10 }
-    //                 onClick={ this.buy.upgrade[i] }
-    //       />
-    //     );
-    // }
-    // console.log(upgrades);
-
     return (
       <div className="App">
         <Header>
@@ -310,7 +263,6 @@ enable = {
           </Button>
 
           <div className="upgrades">
-            {/* { upgrades } */}
             <Upgrade  className="upgrade upgrade1"
                       text="Lök"
                       counter={this.state.counter}

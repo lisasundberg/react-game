@@ -163,11 +163,7 @@ class App extends Component {
         <Container>
           { this.state.popupVisible &&
             <Popup>
-              <h3>Guacamole-spelet</h3>
-              <p>1.<br />Klicka på knappen för att tjäna pengar att köpa ingredienser för.</p>
-              <p>2.<br />För varje ingrediens du köper tjänar du mer pengar per klick.</p>
-              <p>3.<br />Ingrediensen blir dyrare ju fler gånger du köper den, men gör också att du tjänar mer per klick.</p>
-              <p>4.<br />När du fått ihop alla ingredienser har du kommit i (guaca)mål! ( 😬)</p>
+              <Instructions />
               <div className="nameInput">
                 <label htmlFor="username">Vad heter du?</label>
                 <input type="text" name="username" ref={ input => this.username = input } autoComplete="off"/>

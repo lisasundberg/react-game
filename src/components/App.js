@@ -21,14 +21,22 @@ class App extends Component {
     increment: 1,
     autoIncrement: false,
 
-    popupVisible: false,
+    instructionsVisible: false,
     feedbackVisible: false,
+
+    upgrade1: 0,
+    upgrade2: 0,
+    upgrade3: 0,
+    upgrade4: 0,
+    upgrade5: 0,
+    upgrade6: 0,
 
     upgrade1price: 10,
     upgrade2price: 50,
     upgrade3price: 100,
     upgrade4price: 500,
     upgrade5price: 1000,
+    upgrade6price: 1500,
 
     feedback: ''
   }
@@ -53,6 +61,7 @@ class App extends Component {
   increaseCounter = () => {
     this.setState({ counter: this.state.counter + this.state.increment });
   }
+
 
   /*****************************************/
   /******** BUY UPGRADE-FEEDBACK ***********/
@@ -99,9 +108,10 @@ class App extends Component {
       this.setState({
         feedback: 'Lök -$' + this.state.upgrade1price,
         counter: this.state.counter - this.state.upgrade1price,
+        upgrade1: this.state.upgrade1 + 1,
         upgrade1price: this.state.upgrade1price + 5,
         increment: this.state.increment * 2,
-        autoIncrement: true
+        autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
@@ -109,6 +119,7 @@ class App extends Component {
       this.setState({
         feedback: 'Tomat -$' + this.state.upgrade2price,
         counter: this.state.counter - this.state.upgrade2price,
+        upgrade2: this.state.upgrade2 + 1,
         upgrade2price: this.state.upgrade2price * 2,
         increment: (this.state.increment * 1.5),
         autoIncrement: false
@@ -119,6 +130,7 @@ class App extends Component {
       this.setState({
         feedback: 'Vitlök -$' + this.state.upgrade3price,
         counter: this.state.counter - this.state.upgrade3price,
+        upgrade3: this.state.upgrade3 + 1,
         upgrade3price: this.state.upgrade3price + 20,
         increment: (this.state.increment * 3),
         autoIncrement: false
@@ -129,17 +141,30 @@ class App extends Component {
       this.setState({
         feedback: 'Chili -$' + this.state.upgrade4price,
         counter: this.state.counter - this.state.upgrade4price,
+        upgrade4: this.state.upgrade4 + 1,
         upgrade4price: this.state.upgrade4price + 30,
         increment: (this.state.increment * 3),
-        autoIncrement: false
+        autoIncrement: true
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade5: () => {
       this.setState({
-        feedback: 'Avokado -$' + this.state.upgrade3price,
+        feedback: 'Lime -$' + this.state.upgrade5price,
         counter: this.state.counter - this.state.upgrade5price,
-        upgrade5price: this.state.upgrade5price + 20,
+        upgrade5: this.state.upgrade5 + 1,
+        upgrade5price: this.state.upgrade5price + 50,
+        increment: (this.state.increment * 3),
+        autoIncrement: false
+      }, this.triggerAutoIncrement);
+      this.showFeedback();
+    },
+    upgrade6: () => {
+      this.setState({
+        feedback: 'Avokado -$' + this.state.upgrade6price,
+        counter: this.state.counter - this.state.upgrade6price,
+        upgrade6: this.state.upgrade6 + 1,
+        upgrade5price: this.state.upgrade6price + 50,
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
@@ -147,14 +172,28 @@ class App extends Component {
     }
   }
 
+  /*****************************************/
+  /************* REFRESH PAGE **************/
+  /*****************************************/
+
+  refreshPage = () => {
+    window.location.reload();
+  }
+
+
+  /*****************************************/
+  /************* RENDER APP ****************/
+  /*****************************************/
+
   render() {
+
     return (
       <div className="App">
 
         <Header username={ this.state.name } />
         <Container>
 
-          { this.state.popupVisible &&
+          { this.state.instructionsVisible &&
             <Popup>
               <Instructions />
               <NameInput onClick={ this.saveName } inputRef={ input => this.username = input } />
@@ -191,12 +230,18 @@ class App extends Component {
                       price={ this.state.upgrade4price }
                       onClick={ this.buy.upgrade4 }
             />
-
             <Upgrade  className="upgrade upgrade5"
+                      text="Lime"
+                      counter={this.state.counter}
+                      price={ this.state.upgrade5price }
+                      onClick={ this.buy.upgrade5 }
+            />
+
+            <Upgrade  className="upgrade upgrade6"
                       text="Avokado"
                       counter={ this.state.counter }
-                      price={ this.state.upgrade5price }
-                      onClick={ this.buy.upgrade5 }
+                      price={ this.state.upgrade6price }
+                      onClick={ this.buy.upgrade6 }
             />
           </div>
           { this.state.feedbackVisible &&
@@ -206,6 +251,21 @@ class App extends Component {
               </p>
             </Feedback>
           }
+
+          { // When you have collected all ingredients, show success message
+            this.state.upgrade1 &&
+            this.state.upgrade2 &&
+            this.state.upgrade3 &&
+            this.state.upgrade4 &&
+            this.state.upgrade5 &&
+            this.state.upgrade6 &&
+            <Popup>
+              <h3>Grattis!</h3>
+              <p>Du har kommit i guacamål!</p>
+              <Button onClick={ this.refreshPage } text="Spela igen!" />
+            </Popup>
+          }
+
         </Container>
       </div>
     );

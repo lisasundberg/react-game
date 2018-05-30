@@ -19,21 +19,11 @@ class App extends Component {
     popupVisible: false,
     feedbackVisible: false,
 
-    upgrade1: {
-      price: 10
-    },
-    upgrade2: {
-      price: 50
-    },
-    upgrade3: {
-      price: 100
-    },
-    upgrade4: {
-      price: 500
-    },
-    upgrade5: {
-      price: 1000
-    },
+    upgrade1price: 10,
+    upgrade2price: 50,
+    upgrade3price: 100,
+    upgrade4price: 500,
+    upgrade5price: 1000,
 
     feedback: ''
   }
@@ -111,68 +101,53 @@ class App extends Component {
   buy = {
     upgrade1: () => {
       // const nyttObjekt = Object.assign({}, detGamlaObjektet, { enAvKeysen: value });
-      // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1.price + 5 });
-      let upgrade1 = {
-        price: this.state.upgrade1.price + 5
-      }
+      // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1price + 5 });
       this.setState({
-        feedback: 'Lök -$' + this.state.upgrade1.price,
-        counter: this.state.counter - this.state.upgrade1.price,
-        increment: (this.state.increment * 2),
-        autoIncrement: true,
-        upgrade1
+        feedback: 'Lök -$' + this.state.upgrade1price,
+        counter: this.state.counter - this.state.upgrade1price,
+        upgrade1price: this.state.upgrade1price + 5,
+        increment: this.state.increment * 2,
+        autoIncrement: true
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade2: () => {
-      let upgrade2 = {
-        price: this.state.upgrade2.price * 2
-      }
       this.setState({
-        feedback: 'Tomat -$' + this.state.upgrade2.price,
-        counter: this.state.counter - this.state.upgrade2.price,
+        feedback: 'Tomat -$' + this.state.upgrade2price,
+        counter: this.state.counter - this.state.upgrade2price,
+        upgrade2price: this.state.upgrade2price * 2,
         increment: (this.state.increment * 1.5),
-        autoIncrement: false,
-        upgrade2
+        autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade3: () => {
-      let upgrade3 = {
-        price: this.state.upgrade3.price + 20
-      }
       this.setState({
-        feedback: 'Vitlök -$' + this.state.upgrade3.price,
-        counter: this.state.counter - this.state.upgrade3.price,
+        feedback: 'Vitlök -$' + this.state.upgrade3price,
+        counter: this.state.counter - this.state.upgrade3price,
+        upgrade3price: this.state.upgrade3price + 20,
         increment: (this.state.increment * 3),
-        autoIncrement: false,
-        upgrade3
+        autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade4: () => {
-      let upgrade4 = {
-        price: this.state.upgrade4.price + 30
-      }
       this.setState({
-        feedback: 'Chili -$' + this.state.upgrade4.price,
-        counter: this.state.counter - this.state.upgrade4.price,
+        feedback: 'Chili -$' + this.state.upgrade4price,
+        counter: this.state.counter - this.state.upgrade4price,
+        upgrade4price: this.state.upgrade4price + 30,
         increment: (this.state.increment * 3),
-        autoIncrement: false,
-        upgrade4
+        autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade5: () => {
-      let upgrade5 = {
-        price: this.state.upgrade5.price + 20
-      }
       this.setState({
-        feedback: 'Avokado -$' + this.state.upgrade3.price,
-        counter: this.state.counter - this.state.upgrade5.price,
+        feedback: 'Avokado -$' + this.state.upgrade3price,
+        counter: this.state.counter - this.state.upgrade5price,
+        upgrade5price: this.state.upgrade5price + 20,
         increment: (this.state.increment * 3),
-        autoIncrement: false,
-        upgrade5
+        autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
     }
@@ -212,33 +187,33 @@ class App extends Component {
             <Upgrade  className="upgrade upgrade1"
                       text="Lök"
                       counter={this.state.counter}
-                      price={ this.state.upgrade1.price }
+                      price={ this.state.upgrade1price }
                       onClick={ this.buy.upgrade1 }
             />
             <Upgrade  className="upgrade upgrade2"
                       text="Tomat"
                       counter={this.state.counter}
-                      price={ this.state.upgrade2.price }
+                      price={ this.state.upgrade2price }
                       onClick={ this.buy.upgrade2 }
             />
 
             <Upgrade  className="upgrade upgrade3"
                       text="Vitlök"
                       counter={ this.state.counter }
-                      price={ this.state.upgrade3.price }
+                      price={ this.state.upgrade3price }
                       onClick={ this.buy.upgrade3 }
             />
             <Upgrade  className="upgrade upgrade4"
                       text="Chili"
                       counter={this.state.counter}
-                      price={ this.state.upgrade4.price }
+                      price={ this.state.upgrade4price }
                       onClick={ this.buy.upgrade4 }
             />
 
             <Upgrade  className="upgrade upgrade5"
                       text="Avokado"
                       counter={ this.state.counter }
-                      price={ this.state.upgrade5.price }
+                      price={ this.state.upgrade5price }
                       onClick={ this.buy.upgrade5 }
             />
           </div>
@@ -263,8 +238,8 @@ export default App;
 //   let obj = Object.assign({}, this.state);
 //   switch(upgrade){
 //     case "upgrade1":
-//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade1.price + 5 });
+//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade1price + 5 });
 //     case "upgrade2":
-//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade2.price + 5 });
+//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade2price + 5 });
 //   }
 // }

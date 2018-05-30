@@ -186,6 +186,12 @@ class App extends Component {
   /*****************************************/
 
   render() {
+    // Destructure state variables
+    const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6,
+            upgrade1price, upgrade2price, upgrade3price, upgrade4price,
+            upgrade5price, upgrade6price,
+            counter, increment
+          } = this.state;
 
     return (
       <div className="App">
@@ -200,47 +206,60 @@ class App extends Component {
             </Popup>
           }
 
-          <CurrentIncrement value={ this.state.increment } />
-          <Counter value={ this.state.counter } />
+          <CurrentIncrement value={ increment } />
+          <Counter value={ counter } />
           <Button onClick={ this.increaseCounter } text="Klicka här!" />
+
+          {/* <ScoreBoard> */}
+            <div className="boughtUpgrades">
+              <ul>
+                <li>Lök: { upgrade1 }</li>
+                <li>Tomat: { upgrade2 }</li>
+                <li>Vitlök: { upgrade3 }</li>
+                <li><span title="SUPER BOOST">Chili*</span>: { upgrade4 } </li>
+                <li>Lime: { upgrade5 }</li>
+                <li>Avokado: { upgrade6 }</li>
+              </ul>
+            </div>
+          {/* </ScoreBoard> */}
 
           <div className="upgrades">
             <Upgrade  className="upgrade upgrade1"
                       text="Lök"
-                      counter={this.state.counter}
-                      price={ this.state.upgrade1price }
+                      counter={ counter }
+                      price={ upgrade1price }
                       onClick={ this.buy.upgrade1 }
             />
             <Upgrade  className="upgrade upgrade2"
                       text="Tomat"
-                      counter={this.state.counter}
-                      price={ this.state.upgrade2price }
+                      counter={ counter }
+                      price={ upgrade2price }
                       onClick={ this.buy.upgrade2 }
             />
 
             <Upgrade  className="upgrade upgrade3"
                       text="Vitlök"
-                      counter={ this.state.counter }
-                      price={ this.state.upgrade3price }
+                      counter={ counter }
+                      price={ upgrade3price }
                       onClick={ this.buy.upgrade3 }
             />
             <Upgrade  className="upgrade upgrade4"
                       text="Chili"
-                      counter={this.state.counter}
-                      price={ this.state.upgrade4price }
+                      counter={ counter }
+                      price={ upgrade4price }
                       onClick={ this.buy.upgrade4 }
             />
             <Upgrade  className="upgrade upgrade5"
                       text="Lime"
-                      counter={this.state.counter}
-                      price={ this.state.upgrade5price }
+                      counter={ counter }
+                      price={ upgrade5price }
                       onClick={ this.buy.upgrade5 }
             />
 
             <Upgrade  className="upgrade upgrade6"
                       text="Avokado"
-                      counter={ this.state.counter }
-                      price={ this.state.upgrade6price }
+                      counter={ counter }
+                      price={ upgrade6price }
                       onClick={ this.buy.upgrade6 }
             />
           </div>
@@ -253,12 +272,7 @@ class App extends Component {
           }
 
           { // When you have collected all ingredients, show success message
-            this.state.upgrade1 &&
-            this.state.upgrade2 &&
-            this.state.upgrade3 &&
-            this.state.upgrade4 &&
-            this.state.upgrade5 &&
-            this.state.upgrade6 &&
+            upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&
             <Popup>
               <h3>Grattis!</h3>
               <p>Du har kommit i guacamål!</p>

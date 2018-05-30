@@ -52,87 +52,13 @@ class App extends Component {
   /*****************************************/
 
   increaseCounter = () => {
-    this.checkForUpgrades();
     this.setState({ counter: this.state.counter + this.state.increment });
   }
 
-  /* If click score has exceeded the price of an upgrade,
-  /* enable the upgrade */
-  checkForUpgrades = () => {
-    const newCounter = this.state.counter + this.state.increment;
-    if(newCounter >= this.state.upgrade1.price
-            && newCounter < this.state.upgrade2.price) {
-      this.enable.upgrade1();
-    }
-    else if(newCounter >= this.state.upgrade2.price
-            && newCounter < this.state.upgrade3.price) {
-      this.enable.upgrade2();
-    }
-    else if(newCounter >= this.state.upgrade3.price
-            && newCounter < this.state.upgrade4.price) {
-      this.enable.upgrade3();
-    }
-    else if(newCounter >= this.state.upgrade4.price
-            && newCounter < this.state.upgrade5.price) {
-      this.enable.upgrade4();
-    }
-    else if(newCounter >= this.state.upgrade5.price) {
-      this.enable.upgrade5();
-    }
-  }
 
-  /******************************************/
-  /************* ENABLE UPGRADE *************/
-  /******************************************/
-
-enable = {
-    upgrade1: () => {
-      let upgrade1 = {
-        price: this.state.upgrade1.price,
-        increment: this.state.increment
-      }
-      this.setState({
-        upgrade1
-      });
-    },
-    upgrade2: () => {
-      let upgrade2 = {
-        price: this.state.upgrade2.price,
-        increment: this.state.increment
-      }
-      this.setState({
-        upgrade2
-      });
-    },
-    upgrade3: () => {
-      let upgrade3 = {
-        price: this.state.upgrade3.price,
-        increment: this.state.increment
-      }
-      this.setState({
-        upgrade3
-      });
-    },
-    upgrade4: () => {
-      let upgrade4 = {
-        price: this.state.upgrade4.price,
-        increment: this.state.increment
-      }
-      this.setState({
-        upgrade4
-      });
-    },
-    upgrade5: () => {
-      let upgrade5 = {
-        price: this.state.upgrade5.price,
-        increment: this.state.increment
-      }
-      this.setState({
-          upgrade5
-      });
-    }
-  }
-
+  /*****************************************/
+  /**************** FEEDBACK ***************/
+  /*****************************************/
   showFeedback = () => {
     this.setState({
       feedbackVisible: true
@@ -158,13 +84,12 @@ enable = {
       // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1.price + 5 });
       let upgrade1 = {
         disabled: false,
-        increment: 2,
         price: this.state.upgrade1.price + 5
       }
       this.setState({
         feedback: 'Lök -$' + this.state.upgrade1.price,
         counter: this.state.counter - this.state.upgrade1.price,
-        increment: this.state.increment + this.state.upgrade1.increment,
+        increment: (this.state.increment * 2),
         upgrade1
       });
       // setInterval(() => {
@@ -177,13 +102,12 @@ enable = {
     upgrade2: () => {
       let upgrade2 = {
         disabled: false,
-        increment: 3,
         price: this.state.upgrade2.price + 10
       }
       this.setState({
         feedback: 'Tomat -$' + this.state.upgrade2.price,
         counter: this.state.counter - this.state.upgrade2.price,
-        increment: this.state.increment + this.state.upgrade2.increment,
+        increment: (this.state.increment * 1.5),
         upgrade2
       });
       this.showFeedback();
@@ -191,13 +115,12 @@ enable = {
     upgrade3: () => {
       let upgrade3 = {
         disabled: false,
-        increment: 10,
         price: this.state.upgrade3.price + 20
       }
       this.setState({
         feedback: 'Vitlök -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade3.price,
-        increment: this.state.increment + this.state.upgrade3.increment,
+        increment: (this.state.increment * 3),
         upgrade3
       });
       this.showFeedback();
@@ -205,13 +128,12 @@ enable = {
     upgrade4: () => {
       let upgrade4 = {
         disabled: false,
-        increment: 20,
         price: this.state.upgrade4.price + 30
       }
       this.setState({
         feedback: 'Chili -$' + this.state.upgrade4.price,
         counter: this.state.counter - this.state.upgrade4.price,
-        increment: this.state.increment + this.state.upgrade4.increment,
+        increment: (this.state.increment * 3),
         upgrade4
       });
       this.showFeedback();
@@ -219,13 +141,12 @@ enable = {
     upgrade5: () => {
       let upgrade5 = {
         disabled: false,
-        increment: 30,
         price: this.state.upgrade5.price + 20
       }
       this.setState({
         feedback: 'Avokado -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade5.price,
-        increment: this.state.increment + this.state.upgrade5.increment,
+        increment: (this.state.increment * 3),
         upgrade5
       });
       this.showFeedback();

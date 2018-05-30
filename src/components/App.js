@@ -14,6 +14,7 @@ class App extends Component {
     name: '',
     counter: 0,
     increment: 1,
+    autoIncrement: false,
 
     popupVisible: false,
     feedbackVisible: false,
@@ -33,6 +34,7 @@ class App extends Component {
     upgrade5: {
       price: 1000
     },
+
     feedback: ''
   }
 
@@ -57,7 +59,7 @@ class App extends Component {
 
 
   /*****************************************/
-  /**************** FEEDBACK ***************/
+  /******** BUY UPGRADE-FEEDBACK ***********/
   /*****************************************/
   showFeedback = () => {
     this.setState({
@@ -69,6 +71,34 @@ class App extends Component {
       });
     }, 3000);
   }
+
+
+  /*****************************************/
+  /************* AUTO INCEMENT *************/
+  /*****************************************/
+
+  triggerAutoIncrement = () => {
+    let autoIncrement = setInterval(this.increaseCounter, 1000);
+
+    this.state.autoIncrement ? autoIncrement : autoIncrement = 0;
+    // var handle = setInterval(drawAll, 20);
+    //
+    // // When you want to cancel it:
+    // clearInterval(handle);
+    // handle = 0; // I just do this so I know I've cleared the interval
+
+    // if (this.state.autoIncrement) {
+    //     setInterval(() => {
+    //       this.setState({
+    //         counter: this.state.counter + this.state.increment
+    //       });
+    //     }, 1000);
+    //   }
+    // else {
+    //   clearInterval();
+    // }
+  }
+
 
   /*****************************************/
   /************* BUY UPGRADES **************/
@@ -89,13 +119,9 @@ class App extends Component {
         feedback: 'Lök -$' + this.state.upgrade1.price,
         counter: this.state.counter - this.state.upgrade1.price,
         increment: (this.state.increment * 2),
+        autoIncrement: true,
         upgrade1
-      });
-      // setInterval(() => {
-      //   this.setState({
-      //     counter: this.state.counter + this.state.increment
-      //   });
-      // }, 1000);
+      }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade2: () => {
@@ -106,8 +132,9 @@ class App extends Component {
         feedback: 'Tomat -$' + this.state.upgrade2.price,
         counter: this.state.counter - this.state.upgrade2.price,
         increment: (this.state.increment * 1.5),
+        autoIncrement: false,
         upgrade2
-      });
+      }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade3: () => {
@@ -118,8 +145,9 @@ class App extends Component {
         feedback: 'Vitlök -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade3.price,
         increment: (this.state.increment * 3),
+        autoIncrement: false,
         upgrade3
-      });
+      }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade4: () => {
@@ -130,8 +158,9 @@ class App extends Component {
         feedback: 'Chili -$' + this.state.upgrade4.price,
         counter: this.state.counter - this.state.upgrade4.price,
         increment: (this.state.increment * 3),
+        autoIncrement: false,
         upgrade4
-      });
+      }, this.triggerAutoIncrement);
       this.showFeedback();
     },
     upgrade5: () => {
@@ -142,8 +171,9 @@ class App extends Component {
         feedback: 'Avokado -$' + this.state.upgrade3.price,
         counter: this.state.counter - this.state.upgrade5.price,
         increment: (this.state.increment * 3),
+        autoIncrement: false,
         upgrade5
-      });
+      }, this.triggerAutoIncrement);
       this.showFeedback();
     }
   }

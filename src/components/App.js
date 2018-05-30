@@ -164,13 +164,8 @@ class App extends Component {
           { this.state.popupVisible &&
             <Popup>
               <Instructions />
-              <div className="nameInput">
-                <label htmlFor="username">Vad heter du?</label>
-                <input type="text" name="username" ref={ input => this.username = input } autoComplete="off"/>
-                <button onClick={ this.saveName }> OK GO </button>
-              </div>
-            </Popup>
-          }
+              <NameInput onClick={ this.saveName } inputRef={ input => this.username = input } />
+            </Popup> }
           <p>Varje klick är värt ${ this.state.increment }</p>
           <h2>
             ${ this.state.counter }

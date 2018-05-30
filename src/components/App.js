@@ -6,7 +6,9 @@ import Popup from './intro/Popup';
 import Instructions from './intro/Instructions';
 import NameInput from './intro/NameInput';
 
+import Counter from './game/Counter';
 import Button from './game/Button';
+import CurrentIncrement from './game/CurrentIncrement';
 import Upgrade from './game/Upgrade';
 import Feedback from './game/Feedback';
 
@@ -166,23 +168,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header>
-          <h1 className="App-title">Guacamole-spelet</h1>
-          <p className="username">{ this.state.name }</p>
-        </Header>
+
+        <Header username={ this.state.name } />
+        
         <Container>
           { this.state.popupVisible &&
             <Popup>
               <Instructions />
               <NameInput onClick={ this.saveName } inputRef={ input => this.username = input } />
-            </Popup> }
-          <p>Varje klick är värt ${ this.state.increment }</p>
-          <h2>
-            ${ this.state.counter }
-          </h2>
-          <Button onClick={ this.increaseCounter }>
-            <p>Klicka här!</p>
-          </Button>
+            </Popup>
+          }
+
+          <CurrentIncrement value={ this.state.increment } />
+
+          <Counter value={ this.state.counter } />
+          <Button onClick={ this.increaseCounter } text="Klicka här!" />
 
           <div className="upgrades">
             <Upgrade  className="upgrade upgrade1"

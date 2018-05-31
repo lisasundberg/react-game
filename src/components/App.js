@@ -34,12 +34,12 @@ class App extends Component {
     upgrade5: 0,
     upgrade6: 0,
 
-    upgrade1price: 10,
-    upgrade2price: 50,
-    upgrade3price: 100,
-    upgrade4price: 500,
-    upgrade5price: 1000,
-    upgrade6price: 1500,
+    upgrade1price: 20,
+    upgrade2price: 100,
+    upgrade3price: 500,
+    upgrade4price: 1200,
+    upgrade5price: 5000,
+    upgrade6price: 10000,
 
     feedback: ''
   }
@@ -80,7 +80,7 @@ class App extends Component {
         feedback: 'Lök -$' + this.state.upgrade1price,
         counter: this.state.counter - this.state.upgrade1price,
         upgrade1: this.state.upgrade1 + 1,
-        upgrade1price: this.state.upgrade1price + 5,
+        upgrade1price: this.state.upgrade1price * 2,
         increment: this.state.increment * 2,
         autoIncrement: false
       }, this.triggerAutoIncrement, this.checkIfWin);
@@ -91,8 +91,8 @@ class App extends Component {
         feedback: 'Tomat -$' + this.state.upgrade2price,
         counter: this.state.counter - this.state.upgrade2price,
         upgrade2: this.state.upgrade2 + 1,
-        upgrade2price: this.state.upgrade2price * 2,
-        increment: (this.state.increment * 1.5),
+        upgrade2price: this.state.upgrade2price + 50,
+        increment: (this.state.increment * 2),
         autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
@@ -102,7 +102,7 @@ class App extends Component {
         feedback: 'Vitlök -$' + this.state.upgrade3price,
         counter: this.state.counter - this.state.upgrade3price,
         upgrade3: this.state.upgrade3 + 1,
-        upgrade3price: this.state.upgrade3price + 20,
+        upgrade3price: this.state.upgrade3price + 200,
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
@@ -113,7 +113,7 @@ class App extends Component {
         feedback: 'Chili -$' + this.state.upgrade4price,
         counter: this.state.counter - this.state.upgrade4price,
         upgrade4: this.state.upgrade4 + 1,
-        upgrade4price: this.state.upgrade4price + 30,
+        upgrade4price: this.state.upgrade4price * 2,
         increment: (this.state.increment * 3),
         autoIncrement: true
       }, this.triggerAutoIncrement);
@@ -124,7 +124,7 @@ class App extends Component {
         feedback: 'Lime -$' + this.state.upgrade5price,
         counter: this.state.counter - this.state.upgrade5price,
         upgrade5: this.state.upgrade5 + 1,
-        upgrade5price: this.state.upgrade5price + 50,
+        upgrade5price: this.state.upgrade5price * 2,
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
@@ -135,7 +135,7 @@ class App extends Component {
         feedback: 'Avokado -$' + this.state.upgrade6price,
         counter: this.state.counter - this.state.upgrade6price,
         upgrade6: this.state.upgrade6 + 1,
-        upgrade6price: this.state.upgrade6price + 50,
+        upgrade6price: this.state.upgrade6price * 3,
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);

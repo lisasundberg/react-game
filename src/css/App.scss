@@ -1,9 +1,30 @@
+@font-face {
+    font-family: 'Milkshake';
+    src: url('../fonts/milkshake-webfont.woff2') format('woff2'),
+         url('../fonts/milkshake-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Newcastle-BasicClean';
+    src: url('../fonts/newcastle_basic_clean-webfont.woff2') format('woff2'),
+         url('../fonts/newcastle_basic_clean-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Newcastle-BasicRusty';
+    src: url('../fonts/newcastle_basic_rusty-webfont.woff2') format('woff2'),
+         url('../fonts/newcastle_basic_rusty-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 $color__bg: #f8bccf;
 $color__text--dark: #333;
 $color__text--light: #fff;
 
 $font__script: 'Milkshake';
-
 $font__ss--rusty: 'Newcastle-BasicRusty'; //Sans serif
 $font__ss--clean: 'Newcastle-BasicClean';
 

@@ -80,6 +80,10 @@ label, input, button {
   text-decoration: underline;
 }
 
+.script {
+  font-family: $font__script;
+}
+
 div {
   box-sizing: border-box;
 }
@@ -91,11 +95,11 @@ label, button {
 }
 
 label {
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 }
 
 input {
-  height:30px;
+  height:40px;
   font-size: 2em;
   font-family: inherit;
   border:none;
@@ -298,7 +302,6 @@ button {
 .feedback {
   position: absolute;
   text-align: center;
-  border: 1px solid black;
   width: 60%;
   margin: 0;
   padding: 0;

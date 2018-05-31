@@ -13,6 +13,7 @@ import Upgrade from './game/Upgrade';
 import ScoreBoard from './game/ScoreBoard';
 import Feedback from './game/Feedback';
 
+import Guacamole from './../images/guacamole.jpg';
 import './../css/App.css';
 
 class App extends Component {
@@ -50,7 +51,7 @@ class App extends Component {
   saveName = (event) => {
     this.setState({
       name: this.username.value,
-      popupVisible: false
+      instructionsVisible: false
     });
   }
 
@@ -194,7 +195,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Header username={ this.state.name } />
+        <Header />
         <Container>
           { this.state.instructionsVisible &&
             <Popup>
@@ -257,7 +258,7 @@ class App extends Component {
               />
             </div>
           </div>
-          <ScoreBoard>
+          <ScoreBoard username={ this.state.name }>
               <ul className="boughtUpgrades">
                 <li>Lök: { upgrade1 }</li>
                 <li>Tomat: { upgrade2 }</li>
@@ -273,7 +274,8 @@ class App extends Component {
             upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&
             <Popup>
               <h3>Grattis!</h3>
-              <p>Du har kommit i guacamål!</p>
+              <p>Kolla vilken god guaca du har gjort :-)</p>
+              <img src={ Guacamole } alt="Guacamole" className="guacamole" />
               <Button onClick={ this.refreshPage } text="Spela igen!" />
             </Popup>
           }

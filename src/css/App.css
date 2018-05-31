@@ -104,7 +104,18 @@ button {
 
 .container__inner {
   width: 100%;
-  max-width: 700px; }
+  flex-grow: 3; }
+
+.popup-container {
+  width: 100vw;
+  height: 100vh;
+  z-index: 998;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f8bccf; }
 
 .popup {
   display: flex;
@@ -162,19 +173,18 @@ button {
   font-family: "Newcastle-BasicClean" !important; }
 
 .current-increment {
+  width: 20%;
   font-size: 1.2em;
   text-align: left;
-  width: 300px; }
+  flex-grow: 1; }
 
 /*****************************************/
 /*************** UPGRADES ****************/
 /*****************************************/
 .upgrades {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  height: 150px;
-  margin: 0 auto; }
+  justify-content: center;
+  margin: 80px auto; }
   .upgrades .upgrade + .upgrade {
     margin-left: 20px; }
   .upgrades .upgrade1 button {
@@ -201,8 +211,12 @@ button {
 /*****************************************/
 .score-board {
   align-self: flex-start;
-  padding: 2em 5em;
-  border: 6px dotted #333; }
+  padding: 2em 1em;
+  width: 20%;
+  min-width: 240px;
+  border: 6px dotted #333;
+  z-index: 1;
+  flex-grow: 1; }
   .score-board h4 {
     font-family: "Milkshake";
     font-size: 2em;
@@ -214,6 +228,8 @@ button {
 .feedback {
   position: absolute;
   text-align: center;
+  border: 1px solid black;
+  width: 60%;
   margin: 0;
   padding: 0;
   opacity: 0;
@@ -223,6 +239,8 @@ button {
   -webkit-animation-direction: normal;
   -webkit-animation-timing-function: cubic-bezier(0, 0.28, 0.12, 0.49);
   /* or: ease, ease-in, ease-in-out, linear, cubic-bezier(x1, y1, x2, y2) */ }
+  .feedback p {
+    width: 100%; }
 
 @-webkit-keyframes katching {
   0% {
@@ -233,6 +251,10 @@ button {
   100% {
     transform: translateY(-500px);
     opacity: 0; } }
+
+.guacamole {
+  width: 100%;
+  margin: 0 auto 30px; }
 
 /*****************************************/
 /********** FUNCTIONAL STYLES ************/

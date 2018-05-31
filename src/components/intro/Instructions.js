@@ -4,7 +4,7 @@ function Instructions(){
   return(
     <div className="instructions">
       <h3>Guacamole-spelet</h3>
-      <h4>Målet är guaca!</h4>
+      <h4>Guaca är målet!</h4>
       <ol>
         <li>Klicka på knappen för att tjäna pengar</li>
         <li>Köp ingredienser</li>

@@ -22,7 +22,7 @@ class App extends Component {
     increment: 1,
     autoIncrement: false,
 
-    instructionsVisible: false,
+    instructionsVisible: true,
     feedbackVisible: false,
 
     upgrade1: 0,
@@ -202,11 +202,61 @@ class App extends Component {
               <NameInput onClick={ this.saveName } inputRef={ input => this.username = input } />
             </Popup>
           }
-
           <CurrentIncrement value={ increment } />
-          <Counter value={ counter } />
-          <Button onClick={ this.increaseCounter } text="Klicka här!" />
 
+          <div className="container__inner">
+            <Counter value={ counter } />
+            <Button onClick={ this.increaseCounter } text="Klicka här!" />
+
+            { this.state.feedbackVisible &&
+              <Feedback>
+                <p ref={ feedback => this.feedback = feedback }>
+                  { this.state.feedback }
+                </p>
+              </Feedback>
+            }
+
+            <div className="upgrades">
+              <Upgrade  className="upgrade upgrade1"
+                        text="Lök"
+                        counter={ counter }
+                        price={ upgrade1price }
+                        onClick={ this.buy.upgrade1 }
+              />
+              <Upgrade  className="upgrade upgrade2"
+                        text="Tomat"
+                        counter={ counter }
+                        price={ upgrade2price }
+                        onClick={ this.buy.upgrade2 }
+              />
+
+              <Upgrade  className="upgrade upgrade3"
+                        text="Vitlök"
+                        counter={ counter }
+                        price={ upgrade3price }
+                        onClick={ this.buy.upgrade3 }
+              />
+              <Upgrade  className="upgrade upgrade4"
+                        text="Chili"
+                        counter={ counter }
+                        price={ upgrade4price }
+                        onClick={ this.buy.upgrade4 }
+              />
+              <Upgrade  className="upgrade upgrade5"
+                        text="Lime"
+                        counter={ counter }
+                        price={ upgrade5price }
+                        onClick={ this.buy.upgrade5 }
+              />
+
+              <Upgrade  className="upgrade upgrade6"
+                        text="Avokado"
+                        counter={ counter }
+                        price={ upgrade6price }
+                        onClick={ this.buy.upgrade6 }
+              />
+            </div>
+          </div>
           <ScoreBoard>
               <ul className="boughtUpgrades">
                 <li>Lök: { upgrade1 }</li>
@@ -218,53 +268,6 @@ class App extends Component {
               </ul>
           </ScoreBoard>
 
-          <div className="upgrades">
-            <Upgrade  className="upgrade upgrade1"
-                      text="Lök"
-                      counter={ counter }
-                      price={ upgrade1price }
-                      onClick={ this.buy.upgrade1 }
-            />
-            <Upgrade  className="upgrade upgrade2"
-                      text="Tomat"
-                      counter={ counter }
-                      price={ upgrade2price }
-                      onClick={ this.buy.upgrade2 }
-            />
-
-            <Upgrade  className="upgrade upgrade3"
-                      text="Vitlök"
-                      counter={ counter }
-                      price={ upgrade3price }
-                      onClick={ this.buy.upgrade3 }
-            />
-            <Upgrade  className="upgrade upgrade4"
-                      text="Chili"
-                      counter={ counter }
-                      price={ upgrade4price }
-                      onClick={ this.buy.upgrade4 }
-            />
-            <Upgrade  className="upgrade upgrade5"
-                      text="Lime"
-                      counter={ counter }
-                      price={ upgrade5price }
-                      onClick={ this.buy.upgrade5 }
-            />
-
-            <Upgrade  className="upgrade upgrade6"
-                      text="Avokado"
-                      counter={ counter }
-                      price={ upgrade6price }
-                      onClick={ this.buy.upgrade6 }
-            />
-          </div>
-          { this.state.feedbackVisible &&
-            <Feedback>
-              <p ref={ feedback => this.feedback = feedback }>
-                { this.state.feedback }
-              </p>
-            </Feedback>
-          }
 
           { // When you have collected all ingredients, show success message
             upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&

@@ -3,7 +3,9 @@ import React from 'react';
 function Popup(props){
   return(
     <div id="popup" className="popup">
-      { props.children }
+      <div>
+        { props.children }
+      </div>
     </div>
   );
 }

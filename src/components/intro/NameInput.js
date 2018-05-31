@@ -5,7 +5,7 @@ function NameInput(props){
     <div className="nameInput">
       <label htmlFor="username">Vad heter du?</label>
       <input type="text" name="username" ref={ props.inputRef } autoComplete="off"/>
-      <button onClick={ props.onClick }> OK GO </button>
+      <button className="button-large" onClick={ props.onClick }> OK GO </button>
     </div>
   );
 }

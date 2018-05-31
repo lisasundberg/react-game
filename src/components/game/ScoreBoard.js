@@ -4,7 +4,9 @@ function ScoreBoard(props){
   return(
     <div className="score-board">
       <h4>{props.username}'s Score</h4>
-      { props.children }
+        <ul className="boughtUpgrades">
+          { props.children }
+        </ul>
     </div>
   );
 }

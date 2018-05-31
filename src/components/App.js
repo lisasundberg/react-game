@@ -11,6 +11,7 @@ import Button from './game/Button';
 import CurrentIncrement from './game/CurrentIncrement';
 import Upgrade from './game/Upgrade';
 import ScoreBoard from './game/ScoreBoard';
+import ScoreBoardItem from './game/ScoreBoardItem';
 import Feedback from './game/Feedback';
 
 import Guacamole from './../images/guacamole.jpg';
@@ -75,8 +76,6 @@ class App extends Component {
 
   buy = {
     upgrade1: () => {
-      // const nyttObjekt = Object.assign({}, detGamlaObjektet, { enAvKeysen: value });
-      // const upgrade1 = Object.assign({}, upgrade1, { price: this.state.upgrade1price + 5 });
       this.setState({
         feedback: 'Lök -$' + this.state.upgrade1price,
         counter: this.state.counter - this.state.upgrade1price,
@@ -85,7 +84,6 @@ class App extends Component {
         increment: this.state.increment * 2,
         autoIncrement: false
       }, this.triggerAutoIncrement, this.checkIfWin);
-      // this.checkIfWin();
       this.showFeedback();
     },
     upgrade2: () => {
@@ -97,7 +95,6 @@ class App extends Component {
         increment: (this.state.increment * 1.5),
         autoIncrement: false
       }, this.triggerAutoIncrement);
-      // this.checkIfWin();
       this.showFeedback();
     },
     upgrade3: () => {
@@ -109,7 +106,6 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
-      // this.checkIfWin();
       this.showFeedback();
     },
     upgrade4: () => {
@@ -121,7 +117,6 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: true
       }, this.triggerAutoIncrement);
-      // this.checkIfWin();
       this.showFeedback();
     },
     upgrade5: () => {
@@ -133,7 +128,6 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
-      // this.checkIfWin();
       this.showFeedback();
     },
     upgrade6: () => {
@@ -177,18 +171,6 @@ class App extends Component {
      }
   }
 
-  /********************************************/
-  /*********** 6. CHECK IF USER WON ***********/
-  /********************************************/
-  // checkIfWin = () => {
-  //   const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6 } = this.state;
-  //   if (upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6) {
-  //         this.setState({
-  //           win: true
-  //         });
-  //     }
-  //   }
-
 
   /********************************************/
   /************* 6. REFRESH PAGE **************/
@@ -204,7 +186,6 @@ class App extends Component {
   /********************************************/
 
   render() {
-
     // Destructure state variables
     const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6,
             upgrade1price, upgrade2price, upgrade3price, upgrade4price,
@@ -284,19 +265,13 @@ class App extends Component {
             </div>
           </div>
           <ScoreBoard username={ this.state.name }>
-              <ul className="boughtUpgrades">
-                <li>Lök: <span className="score">{ upgrade1 }</span></li>
-                <li>Tomat: <span className="score">{ upgrade2 }</span></li>
-                <li>Vitlök: <span className="score">{ upgrade3 }</span></li>
-                <li>
-                    <span title="SUPER BOOST">Chili<span role="img">🔥</span></span>:
-                    <span className="score"> { upgrade4 }</span>
-                </li>
-                <li>Lime: <span className="score">{ upgrade5 }</span></li>
-                <li>Avokado: <span className="score">{ upgrade6 }</span></li>
-              </ul>
+            <ScoreBoardItem text="Lök:" score={ upgrade1 } />
+            <ScoreBoardItem text="Tomat:" score={ upgrade2 } />
+            <ScoreBoardItem text="Vitlök:" score={ upgrade3 } />
+            <ScoreBoardItem text="Chili🔥:" score={ upgrade4 } />
+            <ScoreBoardItem text="Lime:" score={ upgrade5 } />
+            <ScoreBoardItem text="Avokado:" score={ upgrade6 } />
           </ScoreBoard>
-
 
           { // When the user has collected all upgrades, show success message
             this.userWon &&

@@ -40,8 +40,7 @@ class App extends Component {
     upgrade5price: 1000,
     upgrade6price: 1500,
 
-    feedback: '',
-    win: false
+    feedback: ''
   }
 
 
@@ -86,8 +85,8 @@ class App extends Component {
         increment: this.state.increment * 2,
         autoIncrement: false
       }, this.triggerAutoIncrement, this.checkIfWin);
-      this.showFeedback();
       // this.checkIfWin();
+      this.showFeedback();
     },
     upgrade2: () => {
       this.setState({
@@ -98,8 +97,8 @@ class App extends Component {
         increment: (this.state.increment * 1.5),
         autoIncrement: false
       }, this.triggerAutoIncrement);
+      // this.checkIfWin();
       this.showFeedback();
-      this.checkIfWin();
     },
     upgrade3: () => {
       this.setState({
@@ -110,8 +109,8 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
+      // this.checkIfWin();
       this.showFeedback();
-      this.checkIfWin();
     },
     upgrade4: () => {
       this.setState({
@@ -122,8 +121,8 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: true
       }, this.triggerAutoIncrement);
+      // this.checkIfWin();
       this.showFeedback();
-      this.checkIfWin();
     },
     upgrade5: () => {
       this.setState({
@@ -134,8 +133,8 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
+      // this.checkIfWin();
       this.showFeedback();
-      this.checkIfWin();
     },
     upgrade6: () => {
       this.setState({
@@ -146,7 +145,6 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
-      this.checkIfWin();
       this.showFeedback();
     }
   }
@@ -182,14 +180,14 @@ class App extends Component {
   /********************************************/
   /*********** 6. CHECK IF USER WON ***********/
   /********************************************/
-  checkIfWin = () => {
-    const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6 } = this.state;
-    if (upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6) {
-      this.setState({
-        win: true
-      });
-    }
-  }
+  // checkIfWin = () => {
+  //   const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6 } = this.state;
+  //   if (upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6) {
+  //         this.setState({
+  //           win: true
+  //         });
+  //     }
+  //   }
 
 
   /********************************************/
@@ -206,12 +204,19 @@ class App extends Component {
   /********************************************/
 
   render() {
+
     // Destructure state variables
     const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6,
             upgrade1price, upgrade2price, upgrade3price, upgrade4price,
             upgrade5price, upgrade6price,
             counter, increment
           } = this.state;
+
+    // Check if user has collected all upgrades
+    this.userWon = '';
+    if(upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6) {
+      this.userWon = true;
+    }
 
     return (
       <div className="App">
@@ -293,9 +298,8 @@ class App extends Component {
           </ScoreBoard>
 
 
-          { // When you have collected all ingredients, show success message
-            this.state.win &&
-            // upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&
+          { // When the user has collected all upgrades, show success message
+            this.userWon &&
             <Popup>
               <h3 class="script">Grattis!</h3>
               <p>Kolla vilken god guaca du har gjort :-)</p>
@@ -311,15 +315,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-// function changeState(upgrade){
-//   // Grab a copy of the current state
-//   let obj = Object.assign({}, this.state);
-//   switch(upgrade){
-//     case "upgrade1":
-//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade1price + 5 });
-//     case "upgrade2":
-//       obj = Object.assign({}, obj[upgrade], { price: this.state.upgrade2price + 5 });
-//   }
-// }

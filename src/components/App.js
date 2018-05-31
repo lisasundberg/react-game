@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from './layout/Header';
 import Container from './layout/Container';
+import Popup from './layout/Popup';
 
-import Popup from './intro/Popup';
 import Instructions from './intro/Instructions';
 import NameInput from './intro/NameInput';
 
@@ -10,6 +10,7 @@ import Counter from './game/Counter';
 import Button from './game/Button';
 import CurrentIncrement from './game/CurrentIncrement';
 import Upgrade from './game/Upgrade';
+import ScoreBoard from './game/ScoreBoard';
 import Feedback from './game/Feedback';
 
 import './../css/App.css';
@@ -42,9 +43,9 @@ class App extends Component {
   }
 
 
-  /*****************************************/
-  /************* SAVE USERNAME *************/
-  /*****************************************/
+  /******************************************/
+  /************ 1. SAVE USERNAME ************/
+  /******************************************/
 
   saveName = (event) => {
     this.setState({
@@ -54,48 +55,18 @@ class App extends Component {
   }
 
 
-  /*****************************************/
-  /************* CLICK COUNTER *************/
-  /*****************************************/
+  /*******************************************/
+  /************* 2. CLICK COUNTER ************/
+  /*******************************************/
 
   increaseCounter = () => {
     this.setState({ counter: this.state.counter + this.state.increment });
   }
 
 
-  /*****************************************/
-  /******** BUY UPGRADE-FEEDBACK ***********/
-  /*****************************************/
-
-  showFeedback = () => {
-    this.setState({
-      feedbackVisible: true
-    });
-    setTimeout(() => {
-      this.setState({
-        feedbackVisible: false
-      });
-    }, 3000);
-  }
-
-
-  /*****************************************/
-  /************* AUTO INCEMENT *************/
-  /*****************************************/
-
-  triggerAutoIncrement = () => {
-    if(this.state.autoIncrement){
-       clearInterval(this.autoIncrement);
-       this.autoIncrement = setInterval(this.increaseCounter, 1000);
-     } else {
-       clearInterval(this.autoIncrement);
-     }
-  }
-
-
-  /*****************************************/
-  /************* BUY UPGRADES **************/
-  /*****************************************/
+  /********************************************/
+  /************* 3. BUY UPGRADES **************/
+  /********************************************/
 
   /* When buying an upgrade, show feedback to user,
   /* increase the increment of the counter and
@@ -164,7 +135,7 @@ class App extends Component {
         feedback: 'Avokado -$' + this.state.upgrade6price,
         counter: this.state.counter - this.state.upgrade6price,
         upgrade6: this.state.upgrade6 + 1,
-        upgrade5price: this.state.upgrade6price + 50,
+        upgrade6price: this.state.upgrade6price + 50,
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
@@ -172,18 +143,46 @@ class App extends Component {
     }
   }
 
-  /*****************************************/
-  /************* REFRESH PAGE **************/
-  /*****************************************/
+  /********************************************/
+  /************* 4. BUY-FEEDBACK **************/
+  /********************************************/
+
+  showFeedback = () => {
+    this.setState({
+      feedbackVisible: true
+    });
+    setTimeout(() => {
+      this.setState({
+        feedbackVisible: false
+      });
+    }, 3000);
+  }
+
+  /********************************************/
+  /************* 5. AUTO INCEMENT *************/
+  /********************************************/
+
+  triggerAutoIncrement = () => {
+    if(this.state.autoIncrement){
+       clearInterval(this.autoIncrement);
+       this.autoIncrement = setInterval(this.increaseCounter, 1000);
+     } else {
+       clearInterval(this.autoIncrement);
+     }
+  }
+
+  /********************************************/
+  /************* 6. REFRESH PAGE **************/
+  /********************************************/
 
   refreshPage = () => {
     window.location.reload();
   }
 
 
-  /*****************************************/
-  /************* RENDER APP ****************/
-  /*****************************************/
+  /********************************************/
+  /************* 7. RENDER APP ****************/
+  /********************************************/
 
   render() {
     // Destructure state variables
@@ -195,10 +194,8 @@ class App extends Component {
 
     return (
       <div className="App">
-
         <Header username={ this.state.name } />
         <Container>
-
           { this.state.instructionsVisible &&
             <Popup>
               <Instructions />
@@ -210,9 +207,8 @@ class App extends Component {
           <Counter value={ counter } />
           <Button onClick={ this.increaseCounter } text="Klicka här!" />
 
-          {/* <ScoreBoard> */}
-            <div className="boughtUpgrades">
-              <ul>
+          <ScoreBoard>
+              <ul className="boughtUpgrades">
                 <li>Lök: { upgrade1 }</li>
                 <li>Tomat: { upgrade2 }</li>
                 <li>Vitlök: { upgrade3 }</li>
@@ -220,8 +216,7 @@ class App extends Component {
                 <li>Lime: { upgrade5 }</li>
                 <li>Avokado: { upgrade6 }</li>
               </ul>
-            </div>
-          {/* </ScoreBoard> */}
+          </ScoreBoard>
 
           <div className="upgrades">
             <Upgrade  className="upgrade upgrade1"

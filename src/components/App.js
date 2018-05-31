@@ -40,7 +40,8 @@ class App extends Component {
     upgrade5price: 1000,
     upgrade6price: 1500,
 
-    feedback: ''
+    feedback: '',
+    win: false
   }
 
 
@@ -84,8 +85,9 @@ class App extends Component {
         upgrade1price: this.state.upgrade1price + 5,
         increment: this.state.increment * 2,
         autoIncrement: false
-      }, this.triggerAutoIncrement);
+      }, this.triggerAutoIncrement, this.checkIfWin);
       this.showFeedback();
+      // this.checkIfWin();
     },
     upgrade2: () => {
       this.setState({
@@ -97,6 +99,7 @@ class App extends Component {
         autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
+      this.checkIfWin();
     },
     upgrade3: () => {
       this.setState({
@@ -108,6 +111,7 @@ class App extends Component {
         autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
+      this.checkIfWin();
     },
     upgrade4: () => {
       this.setState({
@@ -119,6 +123,7 @@ class App extends Component {
         autoIncrement: true
       }, this.triggerAutoIncrement);
       this.showFeedback();
+      this.checkIfWin();
     },
     upgrade5: () => {
       this.setState({
@@ -130,6 +135,7 @@ class App extends Component {
         autoIncrement: false
       }, this.triggerAutoIncrement);
       this.showFeedback();
+      this.checkIfWin();
     },
     upgrade6: () => {
       this.setState({
@@ -140,6 +146,7 @@ class App extends Component {
         increment: (this.state.increment * 3),
         autoIncrement: false
       }, this.triggerAutoIncrement);
+      this.checkIfWin();
       this.showFeedback();
     }
   }
@@ -166,11 +173,24 @@ class App extends Component {
   triggerAutoIncrement = () => {
     if(this.state.autoIncrement){
        clearInterval(this.autoIncrement);
-       this.autoIncrement = setInterval(this.increaseCounter, 1000);
+       this.autoIncrement = setInterval(this.increaseCounter, 500);
      } else {
        clearInterval(this.autoIncrement);
      }
   }
+
+  /********************************************/
+  /*********** 6. CHECK IF USER WON ***********/
+  /********************************************/
+  checkIfWin = () => {
+    const { upgrade1, upgrade2, upgrade3, upgrade4, upgrade5, upgrade6 } = this.state;
+    if (upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6) {
+      this.setState({
+        win: true
+      });
+    }
+  }
+
 
   /********************************************/
   /************* 6. REFRESH PAGE **************/
@@ -238,7 +258,7 @@ class App extends Component {
                         onClick={ this.buy.upgrade3 }
               />
               <Upgrade  className="upgrade upgrade4"
-                        text="Chili"
+                        text="Chili🔥"
                         counter={ counter }
                         price={ upgrade4price }
                         onClick={ this.buy.upgrade4 }
@@ -260,20 +280,24 @@ class App extends Component {
           </div>
           <ScoreBoard username={ this.state.name }>
               <ul className="boughtUpgrades">
-                <li>Lök: { upgrade1 }</li>
-                <li>Tomat: { upgrade2 }</li>
-                <li>Vitlök: { upgrade3 }</li>
-                <li><span title="SUPER BOOST">Chili*</span>: { upgrade4 } </li>
-                <li>Lime: { upgrade5 }</li>
-                <li>Avokado: { upgrade6 }</li>
+                <li>Lök: <span className="score">{ upgrade1 }</span></li>
+                <li>Tomat: <span className="score">{ upgrade2 }</span></li>
+                <li>Vitlök: <span className="score">{ upgrade3 }</span></li>
+                <li>
+                    <span title="SUPER BOOST">Chili<span role="img">🔥</span></span>:
+                    <span className="score"> { upgrade4 }</span>
+                </li>
+                <li>Lime: <span className="score">{ upgrade5 }</span></li>
+                <li>Avokado: <span className="score">{ upgrade6 }</span></li>
               </ul>
           </ScoreBoard>
 
 
           { // When you have collected all ingredients, show success message
-            upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&
+            this.state.win &&
+            // upgrade1 && upgrade2 && upgrade3 && upgrade4 && upgrade5 && upgrade6 &&
             <Popup>
-              <h3>Grattis!</h3>
+              <h3 class="script">Grattis!</h3>
               <p>Kolla vilken god guaca du har gjort :-)</p>
               <img src={ Guacamole } alt="Guacamole" className="guacamole" />
               <Button onClick={ this.refreshPage } text="Spela igen!" />

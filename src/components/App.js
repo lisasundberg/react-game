@@ -276,7 +276,7 @@ class App extends Component {
           { // When the user has collected all upgrades, show success message
             this.userWon &&
             <Popup>
-              <h3 class="script">Grattis!</h3>
+              <h3 className="script">Grattis!</h3>
               <p>Kolla vilken god guaca du har gjort :-)</p>
               <img src={ Guacamole } alt="Guacamole" className="guacamole" />
               <Button onClick={ this.refreshPage } text="Spela igen!" />
